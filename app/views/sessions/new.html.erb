@@ -1,0 +1,160 @@
+<html>
+<head>
+  <title><%= Rails.application.class.parent_name %></title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'http://cdn.sencha.io/ext-4.1.0-gpl/resources/css/ext-all.css'       %>
+  <%= javascript_include_tag 'http://cdn.sencha.io/ext-4.1.0-gpl/ext-all-debug.js',
+     "application" %>
+     
+  <%if request.path != '/login'%>
+    <script type="text/javascript" src="system/getConfig"></script>
+  <%end%>
+  
+
+</head>
+<body>
+  <div id="loading-mask"></div>
+  <div id="loading">
+    <div class="loading-indicator">
+      Loading...
+    </div>
+  </div> 
+<script type="text/javascript">
+
+Ext.Loader.setConfig('disableCaching',true);
+Ext.Loader.setConfig('enabled',true);
+
+Ext.define('Login', {
+  extend    : 'Ext.window.Window',
+
+  title   : '<%= Rails.application.class.parent_name %>',
+  width   : 330,
+  height    : 142,
+  closable  : false,
+  closeAction : 'hide',
+  bodyStyle : 'padding:10px;',
+  plain   : true,
+  modal   : true,
+  resizable : false,
+  constrain : true,
+  iconCls   : 'key',
+
+  initComponent : function() {
+    this.items = [
+      this.loginField = Ext.create('Ext.form.field.Text', {
+        allow_blank : false,
+        value   : '',
+        fieldLabel  : "Email",
+        vtype   : 'email',
+        enableKeyEvents : true,
+        listeners : {
+          scope: this,
+          specialKey: function(field, e) {
+            if (e.getKey() == e.ENTER) {
+              this.onLogin();
+            } 
+          }
+        }
+      }),
+      this.passwordField = Ext.create('Ext.form.field.Text', {
+        allow_blank : false,
+        minLength : 6,
+        maxLength : 32,
+        fieldLabel  : 'Password',
+        msgTarget : 'side',
+        minLengthText : 'Password must be at least 6 characters long.',
+        value   : '',
+        inputType : 'password',
+        enableKeyEvents : true,
+        listeners : {
+          scope: this,
+          specialKey: function(field, e) {
+            if (e.getKey() == e.ENTER) {
+              this.onLogin();
+            } 
+          }
+        }
+      })
+    ];
+        
+    this.buttons = [
+      {   
+        xtype : "button", 
+        scope : this,
+        text  : "Login",
+        iconCls : 'accept',
+        handler : this.onLogin 
+      }
+    ];
+    
+    this.keys = [
+      {key: Ext.EventObject.ENTER, scope:this, handler: this.onLogin}
+    ];
+    
+    this.callParent(arguments);
+    this.addEvents('logonSuccess');
+  },
+  
+  focusUserName : function() {
+    this.loginField.focus(false, 1000); 
+  },
+  
+  onLogin : function(){
+    Ext.Ajax.request({
+      url   : "session",
+      method: 'POST',
+      //params: {name : this.loginField.getValue(), password : calcMD5(this.passwordField.getValue())},
+      params: {email : this.loginField.getValue(), password : this.passwordField.getValue()},
+      callback: this.afterOnlogin,
+      scope : this 
+    });
+  },
+
+  afterOnlogin  : function(o,s,r) {
+    var respText = Ext.decode(r.responseText);
+    if (respText.success) {
+      this.fireEvent("logonSuccess"); 
+    } else {
+      if (!respText.success) { 
+            Ext.Msg.show({
+            title : 'Autenthication error',
+            msg   : respText.message,
+            buttons : Ext.Msg.OK,
+            icon  : Ext.MessageBox.ERROR
+            })
+      }
+      this.passwordField.setRawValue("");
+    }
+  }
+});
+
+loggedIn = null;
+
+Ext.Loader.onReady(function() {
+    //console.log('on ready')
+  Ext.QuickTips.init();
+  Ext.form.Field.prototype.msgTarget = 'side';
+  
+  logInWindow = Ext.create('Login');
+  logInWindow.addListener('logonSuccess', function(v) { onLogonSuccess(v);}  );
+  if (!loggedIn) {
+    setTimeout(function(){
+      Ext.get('loading').remove();
+      Ext.get('loading-mask').fadeOut({remove:true});
+    }, 250);  
+    setTimeout('logInWindow.focusUserName()',200);
+    logInWindow.show();
+  } else {
+    document.location.href = '/';
+  }
+
+  function onLogonSuccess(v) {
+    logInWindow.hide();
+    document.location.href = '/';
+  }
+});
+</script>
+
+</body>
+</html>
