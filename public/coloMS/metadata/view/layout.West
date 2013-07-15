@@ -1,0 +1,49 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "region": "west",
+        "split": true,
+        "minWidth": 175,
+        "width": 175,
+        "designer|userClassName": "layout.West",
+        "designer|userAlias": "layoutWest",
+        "requires": [
+            "coloMS.view.layout.Menu"
+        ],
+        "bodyPadding": 5,
+        "title": "Menu"
+    },
+    "configAlternates": {
+        "split": "boolean"
+    },
+    "designerId": "241a3953-813b-4176-9deb-eaedc0fac7a9",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "region",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "split",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "designerId": "a8e27c33-df41-4a77-b855-e7b14d74af1a",
+            "masterInstanceId": "618a1ed4-f42f-4bf3-9694-2bbb424b9f3e"
+        }
+    ]
+}

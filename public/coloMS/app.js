@@ -19,9 +19,33 @@ Ext.Loader.setConfig({
 });
 
 Ext.application({
+
+    requires: [
+        'Ext.util.History'
+    ],
     views: [
         'Dashboard'
     ],
     autoCreateViewport: true,
-    name: 'coloMS'
+    controllers: [
+        'App'
+    ],
+    name: 'coloMS',
+
+    launch: function() {
+        // "this" = Ext.app.Application
+        var me = this;
+        // init Ext.util.History on app launch; if there is a hash in the url,
+        // our controller will load the appropriate content
+        Ext.util.History.init(function(){
+            var hash = document.location.hash;
+            me.getAppController().fireEvent( 'tokenchange', hash.replace( '#', '' ) );
+        })
+        // add change handler for Ext.util.History; when a change in the token
+        // occurs, this will fire our controller's event to load the appropriate content
+        Ext.util.History.on( 'change', function( token ){
+            me.getAppController().fireEvent( 'tokenchange', token );
+        });
+    }
+
 });

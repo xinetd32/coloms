@@ -16,6 +16,13 @@
 Ext.define('coloMS.view.Dashboard', {
     extend: 'Ext.container.Viewport',
 
+    requires: [
+        'coloMS.view.layout.West',
+        'coloMS.view.layout.North',
+        'coloMS.view.layout.South',
+        'coloMS.view.layout.Center'
+    ],
+
     layout: {
         type: 'border'
     },
@@ -26,72 +33,25 @@ Ext.define('coloMS.view.Dashboard', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'container',
-                    region: 'north',
-                    style: 'background-color:cornflowerblue',
-                    items: [
-                        {
-                            xtype: 'label',
-                            style: 'color:white;font-size:20px',
-                            text: 'Colo MS'
-                        },
-                        {
-                            xtype: 'toolbar',
-                            items: [
-                                {
-                                    xtype: 'tbfill'
-                                },
-                                {
-                                    xtype: 'tbseparator'
-                                },
-                                {
-                                    xtype: 'button',
-                                    iconCls: 'silk-door-out',
-                                    text: 'Exit',
-                                    listeners: {
-                                        click: {
-                                            fn: me.onButtonClick,
-                                            scope: me
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    ]
+                    xtype: 'layoutWest',
+                    region: 'west'
                 },
                 {
-                    xtype: 'container',
-                    region: 'south',
-                    style: 'background-color:cornflowerblue',
-                    items: [
-                        {
-                            xtype: 'label',
-                            name: 'copiright',
-                            style: 'color:white;font-size:12px',
-                            text: '(с) ColoBridge Gmbh 2013'
-                        }
-                    ]
+                    xtype: 'layoutNorth',
+                    region: 'north'
+                },
+                {
+                    xtype: 'layoutSouth',
+                    region: 'south'
+                },
+                {
+                    xtype: 'layoutCenter',
+                    region: 'center'
                 }
             ]
         });
 
         me.callParent(arguments);
-    },
-
-    onButtonClick: function(button, e, eOpts) {
-        Ext.Msg.show({
-            title: 'Confirm',
-            msg:'Are you sure you want to log out of the system?',
-            buttons: Ext.Msg.YESNO,
-            icon: Ext.Msg.QUESTION,
-            fn: function(sResp){
-                console.log(sResp);
-                if (sResp=="yes"){
-                    var redirect = 'logout';
-                    window.location = redirect;
-                }    
-            }    
-        })
     }
 
 });
