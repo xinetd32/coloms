@@ -1,0 +1,62 @@
+{
+    "name": "coloMS",
+    "settings": {
+        "spacesToIndent": 4,
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "urlPrefix": "http://localhost:3000",
+        "exportPath": "/Users/olegsobyna/Documents/Aptana Studio 3 Workspace/coloms/public",
+        "buildShouldOverwriteIndex": true
+    },
+    "xdsVersion": "2.2.2",
+    "xdsBuild": 991,
+    "schemaVersion": 1,
+    "upgradeVersion": 210000000503,
+    "framework": "ext42",
+    "topInstanceFileMap": {
+        "800e7e0f-6be3-4481-97b3-5e7614ea7c8f": {
+            "paths": [
+                "metadata/resource/Library"
+            ],
+            "className": "Library"
+        },
+        "0dcdd963-7022-4802-8077-88e589f6af2e": {
+            "paths": [
+                "metadata/view/Dashboard",
+                "app/view/override/Dashboard.js",
+                "app/view/Dashboard.js",
+                "app/view/Viewport.js"
+            ],
+            "className": "Dashboard"
+        },
+        "707894d9-12a1-4aac-957c-9e790da944da": {
+            "paths": [
+                "metadata/resource/css"
+            ],
+            "className": "css"
+        },
+        "e0efed06-c9cb-466e-99ee-093ff42bb153": {
+            "paths": [
+                "metadata/resource/css1"
+            ],
+            "className": "css1"
+        }
+    },
+    "viewOrderMap": {
+        "view": [
+            "0dcdd963-7022-4802-8077-88e589f6af2e"
+        ],
+        "store": [],
+        "controller": [],
+        "model": [],
+        "resource": [
+            "800e7e0f-6be3-4481-97b3-5e7614ea7c8f",
+            "707894d9-12a1-4aac-957c-9e790da944da",
+            "e0efed06-c9cb-466e-99ee-093ff42bb153"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

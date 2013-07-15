@@ -1,0 +1,16 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "views": [
+            "Dashboard"
+        ],
+        "autoCreateViewport": true,
+        "name": "coloMS"
+    },
+    "designerId": "application"
+}

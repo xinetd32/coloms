@@ -4,7 +4,23 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate
 
   helper_method :current_user
-  
+
+=begin
+class AdminsController < ApplicationController
+   before_filter :admin_required
+end
+
+class MarksController < ApplicationController
+   before_filter :admin_required, only: %w(create update)
+end  
+=end
+
+  def admin_required
+    unless current_user && current_user.is_admin?
+      logger.error "Sorry, you don't have access to that."
+      redirect_to login_path and return false
+    end
+  end
   
   protected
   def authenticate
