@@ -4,5 +4,17 @@ ColoMS::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
   match '/login' => "sessions#new", :as => "login"
   match '/logout' => "sessions#destroy", :as => "logout"
+  
+  namespace :inventory do
+    resources :vendors
+    post "/vendors/:id(.:format)" => "vendors#create"  
+  end
+    
+    #match 'users/say_hi' => 'sessions#say_hi' , :as => :say_hi
+#  end
+
+#  scope "/api/inventory", :as => "api" do
+#    resources :vendors
+#  end
  
 end

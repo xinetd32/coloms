@@ -24,19 +24,22 @@ end
   
   protected
   def authenticate
+    logger.error "SESSION Start".center 50, "="
+    logger.error session
+    logger.error "SESSION End".center 50, "="
     unless (session[:user_id]) && (@_user = User.find(session[:user_id]))
       logger.error "no user with id #{session[:user_id]}"
       redirect_to login_path
       return false
     end
-
-    allowed_paths = ["/", "/logout"]
+=begin
+    allowed_paths = ["/", "/logout", "/inventory/vendors.json"]
 
     unless (allowed_paths.include? request.path)
       render :status => :forbidden, :file => "public/403.html"
       return false;
     end
-   
+=end   
     return true
   end
   

@@ -1,0 +1,5 @@
+<% jsonOptions = @jsonOptions || {}%>
+{
+    success: true,
+    rows:<%= @result.to_json(jsonOptions).to_s.html_safe %>
+}
