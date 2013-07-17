@@ -7,7 +7,11 @@ ColoMS::Application.routes.draw do
   
   namespace :inventory do
     resources :vendors
-    post "/vendors/:id(.:format)" => "vendors#create"  
+    post "/vendors/:id(.:format)" => "vendors#create"
+
+    resources :product_types
+    post "/:product_types/:id(.:format)" => ":product_types#create"
+    
   end
     
     #match 'users/say_hi' => 'sessions#say_hi' , :as => :say_hi

@@ -63,7 +63,7 @@ Ext.define('coloMS.controller.Inventory', {
                 items: [
                 {
                     text: 'Edit Item',
-                    iconCls: 'silk-pencil',
+                    iconCls: 'icon_edit',
                     handler: function( item, e ) {
                         var grid = me.getInventoryList(),
                             plugin = grid.editingPlugin;
@@ -73,7 +73,7 @@ Ext.define('coloMS.controller.Inventory', {
                 },
                 {
                     text: 'Delete Item',
-                    iconCls: 'silk-cross',
+                    iconCls: 'icon_delete',
                     handler: function( item, e ) {
                         me.remove( record );
                     }
@@ -107,7 +107,7 @@ Ext.define('coloMS.controller.Inventory', {
             grid = me.getInventoryList(),
             plugin = grid.editingPlugin;
         // start edit of row
-        plugin.startEdit( records[ 0 ], 0 ); 
+        plugin.startEdit( records[ 0 ], 0 );
     },
 
     add: function(button, e, eOpts) {
@@ -127,8 +127,16 @@ Ext.define('coloMS.controller.Inventory', {
     save: function(editor, context, eOpts) {
         var me = this,
             store = context.record.store;
-        //save
-        store.sync();
+        callbacks ={
+            success: function( records, operation ) {
+            },
+            failure: function( records, operation ) {
+                // if failure, reject changes in store
+                store.rejectChanges();
+            }
+        };
+        // save
+        store.sync(callbacks);
     },
 
     remove: function(record) {

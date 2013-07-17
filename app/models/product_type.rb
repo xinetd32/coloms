@@ -1,4 +1,4 @@
-class Vendor < ActiveRecord::Base
+class ProductType < ActiveRecord::Base
   attr_accessible :name, :description
   has_many :items
   

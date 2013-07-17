@@ -22,8 +22,8 @@ Ext.application({
 
     requires: [
         'Ext.util.History',
-        'overrides.grid.RowEditor',
-        'Ext.util.Point'
+        'Ext.util.Point',
+        'coloMS.domain.Proxy'
     ],
     stores: [
         'inventory.Vendors'
@@ -38,6 +38,7 @@ Ext.application({
         'Inventory'
     ],
     name: 'coloMS',
+    namespaces: 'coloMS',
 
     launch: function() {
         // "this" = Ext.app.Application

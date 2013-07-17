@@ -52,7 +52,6 @@ Ext.define('coloMS.view.layout.Menu', {
                             {
                                 xtype: 'menuitem',
                                 itemId: 'inventory-vendors',
-                                iconCls: 'silk-report-user',
                                 text: 'Vendors'
                             }
                         ]

@@ -159,6 +159,18 @@
                 "metadata/resource/js"
             ],
             "className": "js"
+        },
+        "fd96e18c-997e-4cc2-8c81-eca967372737": {
+            "paths": [
+                "metadata/resource/js1"
+            ],
+            "className": "js1"
+        },
+        "2ab14d37-6c72-48c8-b948-58eb146726f8": {
+            "paths": [
+                "metadata/resource/js2"
+            ],
+            "className": "js2"
         }
     },
     "viewOrderMap": {
@@ -189,7 +201,9 @@
             "800e7e0f-6be3-4481-97b3-5e7614ea7c8f",
             "707894d9-12a1-4aac-957c-9e790da944da",
             "e0efed06-c9cb-466e-99ee-093ff42bb153",
-            "5e0bda77-0056-4868-9c98-68dac4c3c84a"
+            "5e0bda77-0056-4868-9c98-68dac4c3c84a",
+            "fd96e18c-997e-4cc2-8c81-eca967372737",
+            "2ab14d37-6c72-48c8-b948-58eb146726f8"
         ],
         "app": [
             "application"

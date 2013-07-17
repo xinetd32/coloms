@@ -48,7 +48,13 @@ Ext.define('coloMS.controller.App', {
                 }
             },
             global: {},
-            store: {}  
+            store: {},    
+            proxy: {
+                '#rest': {
+                    requestcomplete: this.handleRESTResponse,
+                    exeption: this.handleProxyExeption
+                }     
+            }
         });
     },
 
@@ -112,6 +118,82 @@ Ext.define('coloMS.controller.App', {
         center.removeAll( true );
         // add new content
         center.add( config );
+
+    },
+
+    handleRESTResponse: function(request, success) {
+        var me = this,
+            rawData = request.proxy.reader.rawData;
+        // in all cases, let's hide the body mask
+        Ext.getBody().unmask();
+        // if proxy success
+        //console.log(request);
+        if( success ) {
+            // if operation success
+            if( request.operation.wasSuccessful() ) {
+                //...
+            }
+            // if operation failure
+            else {
+                // switch on operation failure type
+                switch( rawData.type ) {
+                    case 'validation':
+                    me.showValidationMessage( rawData.data, rawData.success, rawData.message, rawData.type );
+                    break;
+                }
+            }
+        }
+        // otherwise, major failure...
+        else {
+            // ...
+        }
+
+
+    },
+
+    showValidationMessage: function(data, success, message, type) {
+        var me = this,
+            errorString = '<ul>';
+        // looping over the errors
+        for( var i in data ) {
+            var error = data[ i ];
+            errorString += '<li>' + '<b>' + error.field + '</b>: ' + error.message + '</li>';
+            // match form field with same field name
+            var fieldMatch = Ext.ComponentQuery.query( 'field[name=' + error.field + ']' );
+            // match?
+            if( fieldMatch.length ) {
+                // add extra validaiton message to the offending field
+                fieldMatch[ 0 ].markInvalid( error.message );
+            }
+        }
+        errorString += '</ul>';
+        // display error messages in modal alert
+        Ext.MessageBox.show({
+            title: message,
+            msg: errorString,
+            icon: Ext.MessageBox.ERROR,
+            buttons: Ext.Msg.OK
+        });
+
+
+    },
+
+    handleProxyExeption: function(proxy, response, operation, eOpts) {
+        var obj = Ext.decode(response.responseText);
+        console.log(obj);
+        var srvErr = operation.getError();
+        if(!srvErr) {
+            var msg = obj.name[0];
+        } else {
+            msg = operation.getError().statusText;
+        }    
+        Ext.MessageBox.show({
+            title: 'ERROR',
+            msg: msg,
+            icon: Ext.MessageBox.ERROR,
+            buttons: Ext.Msg.OK
+        });
+
 
     }
 

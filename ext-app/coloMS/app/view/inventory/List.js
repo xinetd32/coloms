@@ -36,7 +36,9 @@ Ext.define('coloMS.view.inventory.List', {
                     text: 'Name',
                     flex: 0.2,
                     editor: {
-                        xtype: 'textfield'
+                        xtype: 'textfield',
+                        allowBlank: false,
+                        maxLength: 255
                     }
                 },
                 {
@@ -45,7 +47,8 @@ Ext.define('coloMS.view.inventory.List', {
                     text: 'Descripton',
                     flex: 0.5,
                     editor: {
-                        xtype: 'textfield'
+                        xtype: 'textfield',
+                        maxLength: 255
                     }
                 }
             ],
@@ -58,7 +61,6 @@ Ext.define('coloMS.view.inventory.List', {
                 {
                     xtype: 'toolbar',
                     dock: 'top',
-                    ui: 'footer',
                     items: [
                         {
                             xtype: 'button',
@@ -71,7 +73,6 @@ Ext.define('coloMS.view.inventory.List', {
                 {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',
-                    ui: 'footer',
                     width: 360,
                     defaultButtonUI: 'default',
                     displayInfo: true,

@@ -14,8 +14,7 @@ module ExtRestController
     if @result.save
       render :template => 'application/extStore.json.erb'
     else
-      #render :json => {:success => false}.merge(:msg => @result.errors.messages[:name])
-      render :json => {:success => false}.merge(@result.errors.messages)
+      render :json => {:success => false}.merge({:message => 'Error', :type => 'validation',:data => to_json_msg(@result.errors.messages)})
     end
   end
 
@@ -24,7 +23,7 @@ module ExtRestController
     if @result.update_attributes(params[defaultModel.name.underscore.to_sym])
       render :template => 'application/extStore.json.erb'
     else
-      render :json => {:success => false}
+      render :json => {:success => false}.merge({:message => 'Error', :type => 'validation',:data => to_json_msg(@result.errors.messages)})
     end
   end
 
@@ -34,4 +33,18 @@ module ExtRestController
 
     render :json => {:success => true}
   end
+  
+  private
+  
+  def to_json_msg(msg)
+    a=[]
+    msg.each { |i|
+      b={}
+      b["field"] = i[0].to_s
+      b["message"] = i[1].first
+      a.push b
+    }
+    a
+  end
+  
 end
