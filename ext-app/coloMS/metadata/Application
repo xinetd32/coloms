@@ -6,9 +6,6 @@
     },
     "codeClass": null,
     "userConfig": {
-        "stores": [
-            "inventory.Vendors"
-        ],
         "views": [
             "Dashboard",
             "inventory.List"

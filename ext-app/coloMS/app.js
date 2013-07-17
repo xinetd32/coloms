@@ -25,9 +25,6 @@ Ext.application({
         'Ext.util.Point',
         'coloMS.domain.Proxy'
     ],
-    stores: [
-        'inventory.Vendors'
-    ],
     views: [
         'Dashboard',
         'inventory.List'

@@ -171,6 +171,22 @@
                 "metadata/resource/js2"
             ],
             "className": "js2"
+        },
+        "68ce2852-86ab-4fb7-a004-4afa3137f92f": {
+            "paths": [
+                "metadata/store/inventory.ProductTypes",
+                "app/store/override/inventory/ProductTypes.js",
+                "app/store/inventory/ProductTypes.js"
+            ],
+            "className": "inventory.ProductTypes"
+        },
+        "ca068b11-5ac0-425d-9d85-9f4c42a396a4": {
+            "paths": [
+                "metadata/model/inventory.ProductType",
+                "app/model/override/inventory/ProductType.js",
+                "app/model/inventory/ProductType.js"
+            ],
+            "className": "inventory.ProductType"
         }
     },
     "viewOrderMap": {
@@ -185,7 +201,8 @@
             "fcfb8f1f-4bc6-46ed-9955-f086d20711a9"
         ],
         "store": [
-            "655773e9-bb94-467b-95b5-b90a56af6a80"
+            "655773e9-bb94-467b-95b5-b90a56af6a80",
+            "68ce2852-86ab-4fb7-a004-4afa3137f92f"
         ],
         "controller": [
             "9301e9a4-fa03-45fc-b7a5-b9cd863368c0",
@@ -195,7 +212,8 @@
         "model": [
             "2e432eb6-e467-4a51-b4eb-7fba1cf4a904",
             "5a7f23d5-4d01-4e11-88f3-e9cf29a7cb6b",
-            "6849aee5-c227-4b5f-81a7-3b1252af3595"
+            "6849aee5-c227-4b5f-81a7-3b1252af3595",
+            "ca068b11-5ac0-425d-9d85-9f4c42a396a4"
         ],
         "resource": [
             "800e7e0f-6be3-4481-97b3-5e7614ea7c8f",

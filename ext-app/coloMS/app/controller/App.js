@@ -100,7 +100,16 @@ Ext.define('coloMS.controller.App', {
                     pageSize: 30
                 })
             };
-            break;        
+            break;
+            case 'inventory-product-types':
+            config = {
+                xtype: 'inventoryList',
+                title: 'Product Types',
+                store: Ext.create('coloMS.store.inventory.ProductTypes',{
+                    pageSize: 30
+                })
+            };
+            break;            
             default: 
             config = {
                 xtype: 'layoutLanding',

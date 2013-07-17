@@ -53,6 +53,11 @@ Ext.define('coloMS.view.layout.Menu', {
                                 xtype: 'menuitem',
                                 itemId: 'inventory-vendors',
                                 text: 'Vendors'
+                            },
+                            {
+                                xtype: 'menuitem',
+                                itemId: 'inventory-product-types',
+                                text: 'Product types'
                             }
                         ]
                     }

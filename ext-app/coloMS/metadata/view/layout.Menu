@@ -1,0 +1,118 @@
+{
+    "type": "Ext.menu.Menu",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "floating": false,
+        "width": null,
+        "designer|userClassName": "layout.Menu",
+        "designer|userAlias": "layoutMenu"
+    },
+    "designerId": "618a1ed4-f42f-4bf3-9694-2bbb424b9f3e",
+    "cn": [
+        {
+            "type": "Ext.menu.Item",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "options",
+                "iconCls": "silk-group",
+                "text": "Options"
+            },
+            "designerId": "0ca54736-d058-4967-98c1-3d7ae5233f50"
+        },
+        {
+            "type": "Ext.menu.Separator",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "designerId": "d7045163-93c5-42df-9f51-6946edd47318"
+        },
+        {
+            "type": "Ext.menu.Item",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "staff",
+                "text": "Sales Staff"
+            },
+            "designerId": "c3d0b7b7-0f57-4c98-92c0-35ec16f10e00"
+        },
+        {
+            "type": "Ext.menu.Separator",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "designerId": "a19da51d-395c-48a3-a295-d60ac1a2a9b7"
+        },
+        {
+            "type": "Ext.menu.Item",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "inventory",
+                "iconCls": "silk-server-link",
+                "text": "Inventory"
+            },
+            "designerId": "b10ab16e-15f3-4972-959c-ffe57b0afe27",
+            "cn": [
+                {
+                    "type": "Ext.menu.Menu",
+                    "reference": {
+                        "name": "menu",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "width": null
+                    },
+                    "designerId": "9754b55b-e5f6-497d-b5d4-e72117ae52df",
+                    "cn": [
+                        {
+                            "type": "Ext.menu.Item",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "inventory-vendors",
+                                "text": "Vendors"
+                            },
+                            "designerId": "17345db7-e5bc-4e20-8ee4-59af0f430303"
+                        },
+                        {
+                            "type": "Ext.menu.Item",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "inventory-product-types",
+                                "text": "Product types"
+                            },
+                            "designerId": "022f36e6-7343-414e-9d0f-dd01c1fa3cdc"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "inventory.ProductType",
+        "extend": "coloMS.model.inventory.Base"
+    },
+    "designerId": "ca068b11-5ac0-425d-9d85-9f4c42a396a4"
+}

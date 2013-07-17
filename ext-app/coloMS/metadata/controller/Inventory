@@ -13,7 +13,8 @@
         ],
         "stores": [
             "[",
-            "    'inventory.Vendors'",
+            "    'inventory.Vendors',",
+            "    'inventory.ProductTypes'",
             "]"
         ],
         "refs": [

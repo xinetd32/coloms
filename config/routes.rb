@@ -10,7 +10,7 @@ ColoMS::Application.routes.draw do
     post "/vendors/:id(.:format)" => "vendors#create"
 
     resources :product_types
-    post "/:product_types/:id(.:format)" => ":product_types#create"
+    post "/product_types/:id(.:format)" => "product_types#create"
     
   end
     

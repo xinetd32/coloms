@@ -20,7 +20,8 @@ Ext.define('coloMS.controller.Inventory', {
         'inventory.List'
     ],
     stores: [
-        'inventory.Vendors'
+        'inventory.Vendors',
+        'inventory.ProductTypes'
     ],
     refs: [
         {
