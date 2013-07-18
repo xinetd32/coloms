@@ -5,6 +5,8 @@ ColoMS::Application.routes.draw do
   match '/login' => "sessions#new", :as => "login"
   match '/logout' => "sessions#destroy", :as => "logout"
   
+  #match 'coloMS' => 'dashboard#index'
+  
   namespace :inventory do
     resources :vendors
     post "/vendors/:id(.:format)" => "vendors#create"

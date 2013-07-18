@@ -1,0 +1,68 @@
+{
+    "type": "Ext.container.Viewport",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Dashboard",
+        "designer|initialView": true,
+        "layout": "border"
+    },
+    "designerId": "0dcdd963-7022-4802-8077-88e589f6af2e",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "west"
+            },
+            "designerId": "6dbbda91-4bf0-454c-b73c-b1cb015bcb37",
+            "masterInstanceId": "241a3953-813b-4176-9deb-eaedc0fac7a9"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "north"
+            },
+            "designerId": "dd0efe61-bcc6-45f9-b394-7026fd981bea",
+            "masterInstanceId": "b15d5e1e-3857-4897-92b1-62c37fbca2be"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "south"
+            },
+            "designerId": "b5bbdc41-dfe4-44a4-86d7-074fa53836b1",
+            "masterInstanceId": "d92b626b-bfe6-4193-aa93-0b915e88a7ed"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "center"
+            },
+            "designerId": "346f073b-8bf2-4979-a017-31dd5458427e",
+            "masterInstanceId": "d868783d-93a2-4489-8d6b-648e1b89fe6b"
+        }
+    ]
+}

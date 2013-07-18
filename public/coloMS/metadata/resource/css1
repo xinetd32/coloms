@@ -1,0 +1,13 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css1",
+        "url": "silk.css"
+    },
+    "designerId": "e0efed06-c9cb-466e-99ee-093ff42bb153"
+}

@@ -1,0 +1,35 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "fields": [
+            "[",
+            "\t{",
+            "        name: 'name',",
+            "        type: 'string'",
+            "    },",
+            "    {",
+            "        name: 'description',",
+            "        type: 'string'",
+            "    }",
+            "]"
+        ],
+        "designer|userClassName": "inventory.Base",
+        "extend": "coloMS.model.Base"
+    },
+    "configAlternates": {
+        "fields": "array"
+    },
+    "designerId": "6849aee5-c227-4b5f-81a7-3b1252af3595",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "fields",
+            "type": "string"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "model": "inventory.ProductType",
+        "remoteFilter": true,
+        "remoteSort": true,
+        "storeId": "ProductTypes",
+        "designer|userClassName": "inventory.ProductTypes",
+        "designer|userAlias": "inventory.productTypes",
+        "requires": [
+            "coloMS.model.inventory.ProductType"
+        ]
+    },
+    "designerId": "8b9011c7-05d8-4349-8863-45ccd3192804",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "/inventory/product_types",
+                "format": "json"
+            },
+            "designerId": "a4901e42-abfc-4ed2-80c8-b8b830047494",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "rows"
+                    },
+                    "designerId": "4a09c4a4-44ef-404e-9a01-e01649cb3a9a"
+                }
+            ]
+        }
+    ]
+}

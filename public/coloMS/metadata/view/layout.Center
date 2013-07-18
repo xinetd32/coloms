@@ -1,0 +1,17 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "height": null,
+        "width": null,
+        "designer|userClassName": "layout.Center",
+        "designer|userAlias": "layoutCenter",
+        "layout": "fit",
+        "title": null
+    },
+    "designerId": "d868783d-93a2-4489-8d6b-648e1b89fe6b"
+}

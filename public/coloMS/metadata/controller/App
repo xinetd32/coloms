@@ -1,0 +1,324 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "views": [
+            "[",
+            "    'layout.West',",
+            "    'layout.Menu',",
+            "    'layout.North',",
+            "    'layout.South',",
+            "    'layout.Center',",
+            "    'layout.Landing'",
+            "]"
+        ],
+        "refs": [
+            "[",
+            "    {",
+            "        ref: 'Menu',",
+            "        selector: '[xtype=layoutMenu]'",
+            "    },",
+            "    {",
+            "        ref: 'CenterRegion',",
+            "        selector: '[xtype=layoutCenter]'",
+            "    }",
+            "]"
+        ],
+        "designer|userClassName": "App",
+        "extend": "coloMS.controller.Base"
+    },
+    "configAlternates": {
+        "views": "array",
+        "refs": "array"
+    },
+    "designerId": "8cddf9e0-7080-4e8d-9d3d-4f1a7207c445",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "views",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "refs",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "init",
+                "implHandler": [
+                    "this.listen({",
+                    "    controller: {",
+                    "        '#App': {",
+                    "            tokenchange: this.dispatch",
+                    "        }",
+                    "    },",
+                    "    component: {",
+                    "        'menu[xtype=layoutMenu] menuitem': {",
+                    "            click: this.addHistory",
+                    "        }",
+                    "    },",
+                    "    global: {},",
+                    "    store: {},",
+                    "    proxy: {",
+                    "        '#rest': {",
+                    "\t\t\trequestcomplete: this.handleRESTResponse,",
+                    "            exeption: this.handleProxyExeption",
+                    "        }",
+                    "    }",
+                    "});"
+                ]
+            },
+            "designerId": "36f28aed-b387-4b53-a266-dbbadaa5aed4"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "addHistory",
+                "designer|params": [
+                    "item",
+                    "e",
+                    "opts"
+                ],
+                "implHandler": [
+                    "var me = this,",
+                    "    token = item.itemId;",
+                    "Ext.util.History.add( token );",
+                    "me.fireEvent( 'tokenchange', token )",
+                    ""
+                ]
+            },
+            "designerId": "e50b0660-f6ad-46c2-8130-0399ef0c4a88"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "dispatch",
+                "designer|params": [
+                    "token"
+                ],
+                "implHandler": [
+                    "var me = this,",
+                    "    config;",
+                    "// switch on token to determine which content to create",
+                    "switch( token ) {",
+                    "    case 'staff':",
+                    "    config = {",
+                    "        xtype: 'panel',",
+                    "        title: 'Staff',",
+                    "        html: 'Some staff content'",
+                    "    };",
+                    "    break;",
+                    "    case 'options':",
+                    "    config = {",
+                    "        xtype: 'panel',",
+                    "        title: 'Options',",
+                    "        html: 'Some options content'",
+                    "    };",
+                    "    break;",
+                    "    case 'inventory':",
+                    "    config = {",
+                    "        xtype: 'panel',",
+                    "        title: 'Inventory',",
+                    "        html: 'Some inventory content' ",
+                    "    };",
+                    "    break;",
+                    "    case 'inventory-vendors':",
+                    "    config = {",
+                    "        xtype: 'inventoryList',",
+                    "        title: 'Vendors',",
+                    "        store: Ext.create('coloMS.store.inventory.Vendors',{",
+                    "            pageSize: 30",
+                    "        })",
+                    "    };",
+                    "    break;    ",
+                    "    case 'inventory-product-types':",
+                    "    config = {",
+                    "        xtype: 'inventoryList',",
+                    "        title: 'Product Types',",
+                    "        store: Ext.create('coloMS.store.inventory.ProductTypes',{",
+                    "\t\t\tpageSize: 30",
+                    "\t\t})",
+                    "    };        ",
+                    "    break;        ",
+                    "    default: ",
+                    "    config = {",
+                    "        xtype: 'layoutLanding'",
+                    "    };",
+                    "    break;",
+                    "}",
+                    "me.updateCenterRegion( config );"
+                ]
+            },
+            "designerId": "4b5b606b-0fb2-44fb-92a8-296dd17ec6f6"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "updateCenterRegion",
+                "designer|params": [
+                    "config"
+                ],
+                "implHandler": [
+                    "    var me = this,",
+                    "        center = me.getCenterRegion();",
+                    "    ",
+                    "    // remove all existing content",
+                    "    center.removeAll( true );",
+                    "    // add new content",
+                    "    center.add( config );",
+                    ""
+                ]
+            },
+            "designerId": "c0fe2354-fc9f-46ac-a4ac-8a756c77493d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "handleRESTResponse",
+                "designer|params": [
+                    "request",
+                    "success"
+                ],
+                "implHandler": [
+                    "var me = this,",
+                    "    rawData = request.proxy.reader.rawData;",
+                    "// in all cases, let's hide the body mask",
+                    "Ext.getBody().unmask();",
+                    "// if proxy success",
+                    "//console.log(request);",
+                    "if( success ) {",
+                    "    // if operation success",
+                    "    if( request.operation.wasSuccessful() ) {",
+                    "        //...",
+                    "    }",
+                    "    // if operation failure",
+                    "    else {",
+                    "        // switch on operation failure type",
+                    "        switch( rawData.type ) {",
+                    "            case 'validation':",
+                    "                me.showValidationMessage( rawData.data, rawData.success, rawData.message, rawData.type );",
+                    "                break;",
+                    "        }",
+                    "    }",
+                    "}",
+                    "// otherwise, major failure...",
+                    "else {",
+                    "    // ...",
+                    "}",
+                    ""
+                ]
+            },
+            "designerId": "9509ea67-5629-41dd-9d7e-56f2b433ad02"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showValidationMessage",
+                "designer|params": [
+                    "data",
+                    "success",
+                    "message",
+                    "type"
+                ],
+                "implHandler": [
+                    "var me = this,",
+                    "    errorString = '<ul>';",
+                    "// looping over the errors",
+                    "for( var i in data ) {",
+                    "    var error = data[ i ];",
+                    "    errorString += '<li>' + '<b>' + error.field + '</b>: ' + error.message + '</li>';",
+                    "    // match form field with same field name",
+                    "    var fieldMatch = Ext.ComponentQuery.query( 'field[name=' + error.field + ']' );",
+                    "    // match?",
+                    "    if( fieldMatch.length ) {",
+                    "        // add extra validaiton message to the offending field",
+                    "        fieldMatch[ 0 ].markInvalid( error.message );",
+                    "    }",
+                    "}",
+                    "errorString += '</ul>';",
+                    "// display error messages in modal alert",
+                    "Ext.MessageBox.show({",
+                    "    title: message,",
+                    "    msg: errorString,",
+                    "    icon: Ext.MessageBox.ERROR,",
+                    "    buttons: Ext.Msg.OK",
+                    "});"
+                ]
+            },
+            "designerId": "bd35f8df-2344-4864-9cd9-1d1f0adb3b74"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "handleProxyExeption",
+                "designer|params": [
+                    "proxy",
+                    "response",
+                    "operation",
+                    "eOpts"
+                ],
+                "implHandler": [
+                    "console.log(obj);",
+                    "var obj = Ext.decode(response.responseText);",
+                    "",
+                    "var srvErr = operation.getError();",
+                    "if(!srvErr) {",
+                    "    var msg = obj.name[0];",
+                    "} else {",
+                    "    msg = operation.getError().statusText;",
+                    "}    ",
+                    "Ext.MessageBox.show({",
+                    "    title: 'ERROR',",
+                    "    msg: msg,",
+                    "    icon: Ext.MessageBox.ERROR,",
+                    "    buttons: Ext.Msg.OK",
+                    "});"
+                ]
+            },
+            "designerId": "b904cbee-7a23-4d93-8951-13f4d1a0b2fa"
+        }
+    ]
+}
