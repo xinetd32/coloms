@@ -21,19 +21,25 @@ Ext.Loader.setConfig({
 Ext.application({
 
     requires: [
-        'Ext.util.History'
+        'Ext.util.History',
+        'Ext.util.Point',
+        'Ext.ux.grid.FiltersFeature',
+        'Ext.data.proxy.Rest',
+        'coloMS.domain.Proxy',
+        'overrides.grid.RowEditor',
+        'overrides.data.proxy.Rest',
+        'overrides.ux.grid.FiltersFeature'
     ],
     views: [
-        'Dashboard',
-        'inventory.List'
+        'Dashboard'
     ],
     autoCreateViewport: true,
     controllers: [
         'App',
-        'Inventory'
+        'Inventory',
+        'Models'
     ],
     name: 'coloMS',
-    namespaces: 'coloMS',
 
     launch: function() {
         // "this" = Ext.app.Application

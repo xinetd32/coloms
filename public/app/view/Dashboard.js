@@ -20,7 +20,9 @@ Ext.define('coloMS.view.Dashboard', {
         'coloMS.view.layout.West',
         'coloMS.view.layout.North',
         'coloMS.view.layout.South',
-        'coloMS.view.layout.Center'
+        'coloMS.view.layout.Center',
+        'Ext.layout.container.Border',
+        'Ext.form.Label'
     ],
 
     layout: {

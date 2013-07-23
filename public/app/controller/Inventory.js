@@ -48,8 +48,7 @@ Ext.define('coloMS.controller.Inventory', {
                 }
             },
             global: {},
-            store: {},
-            //proxy: {} 
+            store: {}
         });
     },
 

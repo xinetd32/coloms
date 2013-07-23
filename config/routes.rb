@@ -13,6 +13,9 @@ ColoMS::Application.routes.draw do
 
     resources :product_types
     post "/product_types/:id(.:format)" => "product_types#create"
+
+    resources :models
+    post "/models/:id(.:format)" => "models#create"
     
   end
     
