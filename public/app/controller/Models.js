@@ -133,7 +133,8 @@ Ext.define('coloMS.controller.Models', {
     edit: function(view, record, item, index, e, eOpts) {
         var me = this;
         // show window
-        me.showEditWindow( record );
+        //me.showEditWindow( record );
+        me.loadDetail( record, me, me.showEditWindow );
     },
 
     add: function(button, e, eOpts) {

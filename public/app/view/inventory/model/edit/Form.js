@@ -20,8 +20,18 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
     requires: [
         'Ext.form.FieldContainer',
         'coloMS.ux.form.field.RemoteComboBox',
-        'coloMS.ux.form.field.plugin.ClearTrigger'
+        'coloMS.ux.form.field.plugin.ClearTrigger',
+        'Ext.layout.container.Form'
     ],
+    
+    layout: 'form',
+    defaults: {
+        labelAlign: 'right',
+        margins: '0 10 0 10'
+    },
+    width: 400,
+    bodyPadding: 10,
+    frame: true,  
 
     initComponent: function() {
         var me = this;
@@ -64,14 +74,19 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
                 },
                 {
                     xtype: 'textfield',
-                    name: 'name'
+                    name: 'name',
+                    fieldLabel: 'Model'
                 },
                 {
-                    xtype: 'textfield',
-                    name: 'description'
+                    xtype: 'textarea',
+                    name: 'description',
+                    fieldLabel: 'Description',
+                    height: 150,
+                    grow: true,
                 },
                 
             ],
+           /* 
             defaults: {
                 layout: 'hbox',
                 margins: '0 10 0 10'
@@ -82,6 +97,7 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
                 flex: 1,
                 margins: 5
             }
+            */
         });
 
         me.callParent(arguments);
