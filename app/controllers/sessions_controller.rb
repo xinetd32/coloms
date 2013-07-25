@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
+      user.update_attributes(:last_login => Time.now)
       session[:user_id] = user.id
       render :json => {:success => true}
     else

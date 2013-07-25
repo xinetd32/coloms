@@ -20,7 +20,7 @@ class DashboardController < ApplicationController
     itemId: 'search',
     fieldLabel: 'Search',
     labelAlign: 'right',
-    defaultAlign: 'tr-br'                          
+    defaultAlign: 'tr-br?'                          
   }
   
   CONTEXT_MENU_EDIT = {

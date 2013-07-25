@@ -37,7 +37,8 @@ Ext.application({
     controllers: [
         'App',
         'Inventory',
-        'Models'
+        'Models',
+        'Staff'
     ],
     name: 'coloMS',
 

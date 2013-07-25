@@ -27,7 +27,7 @@ Ext.define('coloMS.view.layout.Menu', {
                 {
                     xtype: 'menuitem',
                     itemId: 'options',
-                    iconCls: 'silk-group',
+                    iconCls: 'silk-cog',
                     text: 'Options'
                 },
                 {
@@ -36,7 +36,8 @@ Ext.define('coloMS.view.layout.Menu', {
                 {
                     xtype: 'menuitem',
                     itemId: 'staff',
-                    text: 'Sales Staff'
+                    iconCls: 'silk-group',
+                    text: 'Users'
                 },
                 {
                     xtype: 'menuseparator'
@@ -52,16 +53,19 @@ Ext.define('coloMS.view.layout.Menu', {
                             {
                                 xtype: 'menuitem',
                                 itemId: 'inventory-vendors',
+                                iconCls: 'silk-vcard',
                                 text: 'Vendors'
                             },
                             {
                                 xtype: 'menuitem',
                                 itemId: 'inventory-product-types',
+                                iconCls: 'silk-tag',
                                 text: 'Product types'
                             },
                             {
                                 xtype: 'menuitem',
                                 itemId: 'inventory-models',
+                                iconCls: 'silk-key',
                                 text: 'Models'
                             }
                         ]

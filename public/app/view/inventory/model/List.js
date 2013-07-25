@@ -21,6 +21,7 @@ Ext.define('coloMS.view.inventory.model.List', {
     width: 400,
     title: 'Manage Models',
     store: 'inventory.Models',
+    iconCls: 'silk-key',
     
     requires: [
         'coloMS.ux.form.field.plugin.ClearTrigger',

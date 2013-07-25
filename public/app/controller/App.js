@@ -73,9 +73,7 @@ Ext.define('coloMS.controller.App', {
         switch( token ) {
             case 'staff':
             config = {
-                xtype: 'panel',
-                title: 'Staff',
-                html: 'Some staff content'
+                xtype: 'staff.list'
             };
             break;
             case 'options':
@@ -96,6 +94,7 @@ Ext.define('coloMS.controller.App', {
             config = {
                 xtype: 'inventoryList',
                 title: 'Vendors',
+                iconCls: 'silk-vcard',
                 store: Ext.create('coloMS.store.inventory.Vendors',{
                     pageSize: 30
                 })
@@ -105,6 +104,7 @@ Ext.define('coloMS.controller.App', {
             config = {
                 xtype: 'inventoryList',
                 title: 'Product Types',
+                iconCls: 'silk-tag',
                 store: Ext.create('coloMS.store.inventory.ProductTypes',{
                     pageSize: 30
                 })

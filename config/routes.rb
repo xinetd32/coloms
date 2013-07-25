@@ -7,6 +7,10 @@ ColoMS::Application.routes.draw do
   
   match '/get_controls' => 'dashboard#get_controls'
   
+  resources :users
+  post "/users/:id(.:format)" => "users#create"
+  match "/set_password" => "users#set_password"
+  
   namespace :inventory do
     resources :vendors
     post "/vendors/:id(.:format)" => "vendors#create"

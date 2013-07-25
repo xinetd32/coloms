@@ -4,7 +4,7 @@
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag 'http://cdn.sencha.io/ext-4.1.0-gpl/resources/css/ext-all.css'       %>
-  <%= stylesheet_link_tag 'application.css'       %>
+  <%= stylesheet_link_tag '../resources/css/style.css'       %>
   <%= javascript_include_tag 'http://cdn.sencha.io/ext-4.1.0-gpl/ext-all-debug.js',
      "application" %>
      
@@ -39,7 +39,7 @@ Ext.define('Login', {
   modal   : true,
   resizable : false,
   constrain : true,
-  iconCls   : 'key',
+  iconCls   : 'silk-lock',
 
   initComponent : function() {
     this.items = [
@@ -84,7 +84,7 @@ Ext.define('Login', {
         xtype : "button", 
         scope : this,
         text  : "Login",
-        iconCls : 'accept',
+        iconCls : 'silk-accept',
         handler : this.onLogin 
       }
     ];
