@@ -78,7 +78,10 @@ Ext.define('coloMS.controller.Models', {
                       scope: this,
                       buffer: 500
                     }  
-                }    
+                },
+                'menu#context menuitem': {
+                    click: this.onClickContextMenu
+                }     
             },
             global: {},
             store: {
@@ -89,31 +92,40 @@ Ext.define('coloMS.controller.Models', {
             proxy: {} 
         });
     },
-
+    
+    onClickContextMenu: function(item, e, eOpts) {
+        var me = this,
+            token = item.itemId,
+            grid = me.getModelList(),
+            record = grid.getSelectionModel().getSelection()[0];
+            switch( token ) {
+                case 'edit':
+                    me.edit( null, record, null, null, null, null );  
+                break;
+                case 'delete':
+                    me.remove( record );  
+                break;
+            }                                          
+    },
+    
     showContextMenu: function(view, record, item, index, e, eOpts) {
         var me = this;
         // stop event so browser's normal right-click action doesn't continue
         e.stopEvent();
+        
         // if a menu doesn't already exist, create one
         if( !item.contextMenu ) {
             // add menu
             item.contextMenu = new Ext.menu.Menu({
-                items: [
-                {
-                    text: 'Edit Model',
-                    iconCls: 'icon_edit',
-                    handler: function( item, e ) {
-                        me.edit( view, record, item, index, e, eOpts );
-                    }
-                },
-                {
-                    text: 'Delete Model',
-                    iconCls: 'icon_delete',
-                    handler: function( item, e ) {
-                        me.remove( record );
-                    }
-                }
-                ]
+                itemId: 'context',
+                loader: {
+                    url: 'get_controls',
+                    renderer: 'component',
+                        autoLoad: true,
+                        params: {
+                            item: me.$className
+                    }                        
+                }              
             })
         }
         // show menu relative to item which was right-clicked
@@ -231,10 +243,12 @@ Ext.define('coloMS.controller.Models', {
             matchCls = 'x-livesearch-match', 
             indexes = [],  
             count = 0;   
-            currentIndex=null,
+            currentIndex = null,
             searchRegExp = null,
-            grid = me.getModelList(), 
-            searchFieldValue = grid.down('#search').getValue();
+            grid = me.getModelList(),
+            searchField = grid.down('#search');
+             
+            searchFieldValue = searchField ? grid.down('#search').getValue() : '';
             
         if (searchFieldValue == '') return;
         

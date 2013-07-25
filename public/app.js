@@ -55,7 +55,6 @@ Ext.application({
         Ext.util.History.on( 'change', function( token ){
             me.getAppController().fireEvent( 'tokenchange', token );
         });
-
         Ext.Ajax.extraParams = {
             authenticity_token: Ext.query('meta[name="csrf-token"]')[0].content 
         };

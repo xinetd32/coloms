@@ -5,7 +5,7 @@ ColoMS::Application.routes.draw do
   match '/login' => "sessions#new", :as => "login"
   match '/logout' => "sessions#destroy", :as => "logout"
   
-  #match 'coloMS' => 'dashboard#index'
+  match '/get_controls' => 'dashboard#get_controls'
   
   namespace :inventory do
     resources :vendors

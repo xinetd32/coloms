@@ -23,7 +23,8 @@ Ext.define('coloMS.view.inventory.model.List', {
     store: 'inventory.Models',
     
     requires: [
-        'coloMS.ux.form.field.plugin.ClearTrigger'
+        'coloMS.ux.form.field.plugin.ClearTrigger',
+        'Ext.toolbar.Spacer'
     ],
     
 
@@ -77,22 +78,16 @@ Ext.define('coloMS.view.inventory.model.List', {
                 {
                     xtype: 'toolbar',
                     dock: 'top',
-                    items: [
-                        {
-                            xtype: 'button',
-                            itemId: 'add',
-                            iconCls: 'silk-add',
-                            text: 'Add'
-                        },
-                        '-',
-                        {
-                            xtype: 'textfield',
-                            itemId: 'search',
-                            fieldLabel: 'Search',
-                            labelAlign: 'right'                          
-                        }
-                    ]
-                },
+                    
+                    loader: {
+                        url: 'get_controls',
+                        renderer: 'component',
+                        autoLoad: true,
+                        params: {
+                            item: me.$className
+                        }                        
+                    }
+                },    
                 {
                     xtype: 'toolbar',
                     dock: 'bottom',

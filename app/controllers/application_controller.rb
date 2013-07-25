@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  # TODO разобраться почемуто после обновления страницы не прикрепляется аутентификэшэн токин
+  #protect_from_forgery
   
   before_filter :authenticate
 
@@ -24,9 +25,9 @@ end
   
   protected
   def authenticate
-    logger.error "SESSION Start".center 50, "="
-    logger.error session
-    logger.error "SESSION End".center 50, "="
+    #logger.error "SESSION Start".center 50, "="
+    #logger.error session
+    #logger.error "SESSION End".center 50, "="
     unless (session[:user_id]) && (@_user = User.find(session[:user_id]))
       logger.error "no user with id #{session[:user_id]}"
       redirect_to login_path
