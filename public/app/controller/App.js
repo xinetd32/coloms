@@ -82,6 +82,15 @@ Ext.define('coloMS.controller.App', {
                 title: 'Options',
                 html: 'Some options content'
             };
+            case 'options-roles':
+            config = {
+                xtype: 'options.List',
+                title: 'Roles',
+                iconCls: 'silk-user',
+                store: Ext.create('coloMS.store.options.Roles',{
+                    pageSize: 30
+                })
+            };            
             break;
             case 'inventory':
             config = {

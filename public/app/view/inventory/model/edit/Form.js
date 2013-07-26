@@ -53,7 +53,8 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
                         }
                     ],
                     editable: false,
-                    forceSelection: true
+                    forceSelection: true,
+                    //tpl: '<tpl for="."><div class="x-combo-list-item" ><b>{name}</b> - [{description}]</div></tpl>',
                 },
                 {
                     xtype: 'ux.form.field.remotecombobox',
@@ -70,7 +71,8 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
                         }
                     ],
                     editable: false,
-                    forceSelection: true
+                    forceSelection: true,
+                    //tpl: '<tpl for="."><div class="x-combo-list-item" ><b>{name}</b> - [{description}]</div></tpl>',
                 },
                 {
                     xtype: 'textfield',

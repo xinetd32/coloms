@@ -25,6 +25,10 @@ Ext.define('coloMS.controller.Staff', {
         {
             ref: 'StaffEditForm',
             selector: '[xtype=staff.edit.form]'
+        },
+        {
+            ref: 'RoleItemSelector',
+            selector: 'form[xtype=staff.edit.form] itemselectorfield'
         }
     ],
     init: function() {
@@ -56,10 +60,36 @@ Ext.define('coloMS.controller.Staff', {
                 }                
             },
             global: {},
-            store: {},
+            store: {
+                '#options.Roles': {
+                    load: this.onItemSelectorFieldModifyItems
+                }
+            },
             proxy: {} 
         });
     },
+    
+    onItemSelectorFieldModifyItems: function(store, records, successful, eOpts) {
+        if (this.getStaffEditWindow() === undefined) return;
+        var me = this,
+            record = me.getStaffEditForm().getRecord(),
+            itemSelector = me.getRoleItemSelector(),
+            itemSelectorStore = itemSelector.getStore();
+        if(record) {
+            var roles = record.data.roles;
+            if (roles) {
+                var a_roles = roles.split(",");
+                Ext.Array.each(a_roles, function(name, index, countriesItSelf) {
+                    var index = itemSelectorStore.find("name", name);
+                    if (index >= 0) {
+                        var rec = itemSelectorStore.getAt(index);
+                        itemSelector.moveRec(true, rec);
+                    }
+                });
+            }
+        }        
+    },
+    
     /**
      * Displays context menu 
      * @param {Ext.view.View} view
@@ -159,7 +189,7 @@ Ext.define('coloMS.controller.Staff', {
             record = form.getRecord(),
             values = form.getValues(),
             callbacks;
-
+        if (!form.isValid()) return;
         // set values of record from form
         record.set( values );
         // check if form is even dirty...if not, just close window and stop everything...nothing to see here

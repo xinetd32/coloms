@@ -23,7 +23,7 @@ Ext.define('coloMS.model.Staff', {
             type: 'string'
         },
         {
-            name: 'role',
+            name: 'roles',
             type: 'string'
         },
         {

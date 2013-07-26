@@ -45,7 +45,8 @@ Ext.define('coloMS.view.inventory.model.edit.Window', {
                         {
                             xtype: 'button',
                             text: 'Cancel',
-                            itemId: 'cancel'
+                            itemId: 'cancel',
+                            iconCls: 'silk-cancel'
                         },
                         {
                             xtype: 'tbfill'
@@ -53,7 +54,8 @@ Ext.define('coloMS.view.inventory.model.edit.Window', {
                         {
                             xtype: 'button',
                             text: 'Save',
-                            itemId: 'save'
+                            itemId: 'save',
+                            iconCls: 'silk-accept'
                         }
                     ]
                 }

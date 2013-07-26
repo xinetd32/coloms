@@ -28,7 +28,18 @@ Ext.define('coloMS.view.layout.Menu', {
                     xtype: 'menuitem',
                     itemId: 'options',
                     iconCls: 'silk-cog',
-                    text: 'Options'
+                    text: 'Options',
+                    menu: {
+                        xtype: 'menu',
+                        items: [
+                            {
+                                xtype: 'menuitem',
+                                itemId: 'options-roles',
+                                iconCls: 'silk-user',
+                                text: 'Roles'
+                            }
+                        ]
+                    }                    
                 },
                 {
                     xtype: 'menuseparator'

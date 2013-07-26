@@ -41,6 +41,10 @@ Ext.define('coloMS.view.staff.List', {
                         dataIndex: 'last_login',
                         format: 'd/m/Y'
                     },
+                    {
+                        text: 'Roles',
+                        dataIndex: 'roles'
+                    },                    
                 ]
             },
             dockedItems: [

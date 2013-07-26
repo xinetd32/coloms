@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725092128) do
+ActiveRecord::Schema.define(:version => 20130726082251) do
 
   create_table "distributors", :force => true do |t|
     t.string   "name"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(:version => 20130725092128) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "permissions", :force => true do |t|
+    t.string   "name"
+    t.integer  "role_id"
+    t.string   "module"
+    t.string   "element"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "permissions", ["role_id"], :name => "index_permissions_on_role_id"
+
   create_table "product_invoices", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -63,6 +74,13 @@ ActiveRecord::Schema.define(:version => 20130725092128) do
   end
 
   create_table "product_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  :null => false

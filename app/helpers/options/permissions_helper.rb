@@ -1,0 +1,2 @@
+module Options::PermissionsHelper
+end

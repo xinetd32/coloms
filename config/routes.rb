@@ -22,6 +22,16 @@ ColoMS::Application.routes.draw do
     post "/models/:id(.:format)" => "models#create"
     
   end
+  
+  namespace :options do
+    resources :roles
+    post "/roles/:id(.:format)" => "roles#create"
+    
+    resources :permissions
+    post "/permissions/:id(.:format)" => "permissions#create"
+    
+  end
+  
     
     #match 'users/say_hi' => 'sessions#say_hi' , :as => :say_hi
 #  end

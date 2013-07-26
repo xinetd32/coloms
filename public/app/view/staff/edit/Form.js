@@ -59,7 +59,6 @@ Ext.define('coloMS.view.staff.edit.Form', {
                 {
                     xtype: 'fieldcontainer',
                     items: [
-
                         {
                             xtype: 'datefield',
                             name: 'dob',
@@ -108,11 +107,13 @@ Ext.define('coloMS.view.staff.edit.Form', {
                     items: [
                         {
                             xtype: 'itemselectorfield',
-                            name: 'role',
+                            name: 'roles',
                             anchor: '100%',
-                            store: ['admin', 'guest'],
-                            displayField: 'LongName',
-                            valueField: 'UserRoleID',
+                            store: {
+                                type: 'options.roles'
+                            },
+                            displayField: 'name',
+                            valueField: 'name',
                             allowBlank: false,
                             msgTarget: 'side',
                             fromTitle: 'Available Roles',
