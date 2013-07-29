@@ -232,7 +232,19 @@ Ext.define('coloMS.controller.Models', {
             store = grid.getStore(),
             value = grid.down('#search').getValue();       
         store.proxy.extraParams = value == '' ? {} : { query : value };
-        store.reload();
+        store.reload(
+        	/*
+        	{
+    scope: this,
+    callback: function(records, operation, success) {
+        // the operation object
+        // contains all of the details of the load operation
+        console.log(success);
+    }
+    }
+    */
+		);
+
     },
     
     onStoreIMLoad: function(store, records, successful, eOpts) {
