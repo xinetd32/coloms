@@ -16,4 +16,7 @@
 *.class
 *.pyc
 *.pyo
+
 .DS_Store
+
+Gemfile.lock
