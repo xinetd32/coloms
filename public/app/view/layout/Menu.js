@@ -29,6 +29,7 @@ Ext.define('coloMS.view.layout.Menu', {
                     itemId: 'options',
                     iconCls: 'silk-cog',
                     text: 'Options',
+                    hidden: !coloMS.LoggedInUser.inRole('admin'),
                     menu: {
                         xtype: 'menu',
                         items: [
@@ -42,16 +43,19 @@ Ext.define('coloMS.view.layout.Menu', {
                     }                    
                 },
                 {
-                    xtype: 'menuseparator'
+                    xtype: 'menuseparator',
+                    hidden: !coloMS.LoggedInUser.inRole('admin'),
                 },
                 {
                     xtype: 'menuitem',
                     itemId: 'staff',
                     iconCls: 'silk-group',
+                    hidden: !coloMS.LoggedInUser.inRole('admin'),
                     text: 'Users'
                 },
                 {
-                    xtype: 'menuseparator'
+                    xtype: 'menuseparator',
+                    hidden: !coloMS.LoggedInUser.inRole('admin'),
                 },
                 {
                     xtype: 'menuitem',

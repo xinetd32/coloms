@@ -6,6 +6,7 @@ ColoMS::Application.routes.draw do
   match '/logout' => "sessions#destroy", :as => "logout"
   
   match '/get_controls' => 'dashboard#get_controls'
+  match '/get_current_user' => 'users#get_current_user'
   
   resources :users
   post "/users/:id(.:format)" => "users#create"

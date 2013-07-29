@@ -16,7 +16,8 @@ Ext.define('coloMS.model.Staff', {
         },
         {
             name: 'dob',
-            type: 'date'
+            type: 'date',
+            //dateWriteFormat: 'd-m-Y'
         },
         {
             name: 'phone',

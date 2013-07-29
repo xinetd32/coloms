@@ -33,6 +33,12 @@ Ext.define('coloMS.view.layout.North', {
                     xtype: 'toolbar',
                     items: [
                         {
+                            xtype: 'label',
+                            text: 'Logged in: ' + coloMS.LoggedInUser.get('first_name') + ' ' + coloMS.LoggedInUser.get('last_name'),
+                            name: 'logged_in',
+                            itemId: 'logged_in'
+                        },
+                        {
                             xtype: 'tbfill'
                         },
                         {
@@ -66,6 +72,7 @@ Ext.define('coloMS.view.layout.North', {
             fn: function(sResp){
                 if (sResp=="yes"){
                     var redirect = 'logout';
+                    localStorage.removeItem('currentUser');
                     window.location = redirect;
                 }    
             }    

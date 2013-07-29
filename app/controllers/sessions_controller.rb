@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user
       user.update_attributes(:last_login => Time.now)
       session[:user_id] = user.id
-      render :json => {:success => true}
+      render :json => {:success => true, :user => user.to_json({:except => [:password_hash, :password_salt]}).to_s.html_safe}
     else
       render :json => {:success => false, :message => "Invalid login/password combination"}
     end

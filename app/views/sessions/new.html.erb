@@ -115,6 +115,8 @@ Ext.define('Login', {
   afterOnlogin  : function(o,s,r) {
     var respText = Ext.decode(r.responseText);
     if (respText.success) {
+      var currentUserObject = respText.user
+      localStorage.setItem('currentUser', Ext.encode( currentUserObject ));
       this.fireEvent("logonSuccess"); 
     } else {
       if (!respText.success) { 

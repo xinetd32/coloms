@@ -63,7 +63,8 @@ Ext.define('coloMS.view.staff.edit.Form', {
                             xtype: 'datefield',
                             name: 'dob',
                             fieldLabel: 'DOB',
-                            format:'d/m/Y'
+                            allowBlank: true
+                            //format:'d.m.Y'
                         },
 
 /*

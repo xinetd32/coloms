@@ -49,11 +49,11 @@ Ext.define('coloMS.view.inventory.List', {
                     }
                 }
             ],
-            plugins: [
+            plugins: coloMS.LoggedInUser.inRole('admin') ? [
                 Ext.create('Ext.grid.plugin.RowEditing', {
 
                 })
-            ],
+            ] : [],
             dockedItems: [
                 {
                     xtype: 'toolbar',
@@ -64,6 +64,7 @@ Ext.define('coloMS.view.inventory.List', {
                             xtype: 'button',
                             itemId: 'add',
                             iconCls: 'silk-add',
+                            hidden: !coloMS.LoggedInUser.inRole('admin'),
                             text: 'Add'
                         }
                     ]

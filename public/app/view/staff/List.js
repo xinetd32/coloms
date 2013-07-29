@@ -39,7 +39,7 @@ Ext.define('coloMS.view.staff.List', {
                         xtype: 'datecolumn',
                         text: 'Last login',
                         dataIndex: 'last_login',
-                        format: 'd/m/Y'
+                        //ormat: 'd-m-Y'
                     },
                     {
                         text: 'Roles',

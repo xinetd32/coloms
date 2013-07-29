@@ -16,6 +16,10 @@
 Ext.define('coloMS.controller.App', {
     extend: 'coloMS.controller.Base',
 
+    requires: [
+        'coloMS.model.security.User'
+    ],
+    
     views: [
         'layout.West',
         'layout.Menu',
@@ -32,6 +36,10 @@ Ext.define('coloMS.controller.App', {
         {
             ref: 'CenterRegion',
             selector: '[xtype=layoutCenter]'
+        },
+        {
+            ref: 'LoggedIn',
+            selector: 'label#logged_in'
         }
     ],
 
@@ -56,6 +64,8 @@ Ext.define('coloMS.controller.App', {
                 }
             }
         });
+        var currentUser = Ext.decode( localStorage.getItem('currentUser'));
+        coloMS.LoggedInUser = Ext.create( 'coloMS.model.security.User', eval("("+currentUser+")") );     
     },
 
     addHistory: function(item, e, opts) {

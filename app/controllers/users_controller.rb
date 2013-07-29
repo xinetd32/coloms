@@ -29,4 +29,10 @@ class UsersController < ApplicationController
     end
   end
   
+  def get_current_user
+    @jsonOptions = {:except => [:password_hash, :password_salt]}
+    @result = current_user
+    render :template => 'application/extStoreNoTotal.json.erb'
+  end
+  
 end

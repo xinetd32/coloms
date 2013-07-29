@@ -55,6 +55,7 @@ Ext.define('coloMS.view.inventory.model.edit.Window', {
                             xtype: 'button',
                             text: 'Save',
                             itemId: 'save',
+                            hidden: !coloMS.LoggedInUser.inRole('admin'),
                             iconCls: 'silk-accept'
                         }
                     ]

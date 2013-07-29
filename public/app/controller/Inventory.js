@@ -53,6 +53,8 @@ Ext.define('coloMS.controller.Inventory', {
     },
 
     showContextMenu: function(view, record, item, index, e, eOpts) {
+        if (!coloMS.LoggedInUser.inRole('admin')) return;
+      
         var me = this;
         // stop event so browser's normal right-click action doesn't continue
         e.stopEvent();

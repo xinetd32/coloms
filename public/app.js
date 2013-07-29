@@ -46,6 +46,10 @@ Ext.application({
     launch: function() {
         // "this" = Ext.app.Application
         var me = this;
+        setTimeout(function(){
+            Ext.get('loading').remove();
+            Ext.get('loading-mask').fadeOut({remove:true});
+        }, 250);          
         // init Ext.util.History on app launch; if there is a hash in the url,
         // our controller will load the appropriate content
         Ext.util.History.init(function(){
