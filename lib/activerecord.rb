@@ -2,7 +2,7 @@ class ActiveRecord::Base
   @queryColumns = []
   
   def self.queryColumns
-    @queryColumns
+    @queryColumns ? @queryColumns : []
   end
   
   def self.queryColumns=(columns)

@@ -84,11 +84,7 @@ Ext.define('coloMS.controller.Models', {
                 }     
             },
             global: {},
-            store: {
-                '#inventory.Models': {
-                    load: this.onStoreIMLoad
-                }
-            },
+            store: {},
             proxy: {} 
         });
     },
@@ -226,75 +222,6 @@ Ext.define('coloMS.controller.Models', {
         })
     },
     
-    onChangeSearchField: function( field, newValue, oldValue, eOpts) {
-        var me = this,
-            grid = me.getModelList(),
-            store = grid.getStore(),
-            value = grid.down('#search').getValue();       
-        store.proxy.extraParams = value == '' ? {} : { query : value };
-        store.reload(
-        	/*
-        	{
-    scope: this,
-    callback: function(records, operation, success) {
-        // the operation object
-        // contains all of the details of the load operation
-        console.log(success);
-    }
-    }
-    */
-		);
-
-    },
-    
-    onStoreIMLoad: function(store, records, successful, eOpts) {
-        var me = this,
-            tagsRe = /<[^>]*>/gm,
-            // DEL ASCII code
-            tagsProtect = '\x0f',  
-            matchCls = 'x-livesearch-match', 
-            indexes = [],  
-            count = 0;   
-            currentIndex = null,
-            searchRegExp = null,
-            grid = me.getModelList(),
-            searchField = grid.down('#search');
-             
-            searchFieldValue = searchField ? grid.down('#search').getValue() : '';
-            
-        if (searchFieldValue == '') return;
-        
-        searchRegExp = new RegExp(searchFieldValue, 'gi');
-        
-        store.each(function(record, idx) {
-            var td = Ext.fly(grid.view.getNode(idx)).down('td'),
-                cell, matches, cellHTML;
-            while(td) {
-                 cell = td.down('.x-grid-cell-inner');
-                 matches = cell.dom.innerHTML.match(tagsRe);
-                 cellHTML = cell.dom.innerHTML.replace(tagsRe, me.tagsProtect);
-                 
-                 // populate indexes array, set currentIndex, and replace wrap matched string in a span
-                 cellHTML = cellHTML.replace(searchRegExp, function(m) {
-                    count += 1;
-                    if (Ext.Array.indexOf(indexes, idx) === -1) {
-                        indexes.push(idx);
-                    }
-                    if (currentIndex === null) {
-                        currentIndex = idx;
-                    }
-                    return '<span class="' + matchCls + '">' + m + '</span>';
-                 });
-                 // restore protected tags
-                 Ext.each(matches, function(match) {
-                    cellHTML = cellHTML.replace(tagsProtect, match); 
-                 });
-                 // update cell html
-                 cell.dom.innerHTML = cellHTML;
-                 td = td.next();
-            }              
-        });    
-    },
 
     showEditWindow: function(record) {
         var me = this,
@@ -311,5 +238,4 @@ Ext.define('coloMS.controller.Models', {
         // load form with data
         win.down( 'form' ).loadRecord( record );
     }
-
 });

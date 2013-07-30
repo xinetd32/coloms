@@ -66,6 +66,19 @@ Ext.define('coloMS.view.inventory.List', {
                             iconCls: 'silk-add',
                             hidden: !coloMS.LoggedInUser.inRole('admin'),
                             text: 'Add'
+                        },
+                        { 
+                            xtype: 'tbseparator' 
+                        },
+                        {
+                            xtype: 'tbspacer'
+                        },
+                        {
+                            xtype: 'textfield',
+                            itemId: 'search',
+                            fieldLabel: 'Search',
+                            labelAlign: 'right',
+                            defaultAlign: 'tr-br?'                              
                         }
                     ]
                 },

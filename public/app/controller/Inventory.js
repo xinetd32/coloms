@@ -45,7 +45,14 @@ Ext.define('coloMS.controller.Inventory', {
                 },
                 'grid[xtype=inventoryList] gridview': {
                     itemadd: this.edit
-                }
+                },
+                'grid[xtype=inventoryList] textfield#search': {
+                    change: { 
+                      fn: this.onChangeSearchField,
+                      scope: this,
+                      buffer: 500
+                    }  
+                },                
             },
             global: {},
             store: {}
