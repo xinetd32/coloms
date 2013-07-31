@@ -137,7 +137,16 @@ Ext.define('coloMS.controller.App', {
                     pageSize: 30
                 })
             };        
-            break;               
+            break;
+            case 'inventory-distributors':
+            config = {
+                xtype: 'distributorsList',
+                title: 'Distributors',
+                store: Ext.create('coloMS.store.inventory.Distributors',{
+                    pageSize: 30
+                })
+            };        
+            break;                                          
             default: 
             config = {
                 xtype: 'layoutLanding'

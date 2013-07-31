@@ -36,11 +36,11 @@ class DashboardController < ApplicationController
   }
   
   def get_controls
-    if (params[:item] == "coloMS.view.inventory.model.List")
+    if (["coloMS.view.inventory.model.List","coloMS.view.inventory.distributors.List"].include?(params[:item]))
       @respond = current_user[:roles].include?("admin") ? [BUTTON_ADD, TB_SEPARATOR, TB_SPACER, TEXTFIELD_SEARCH] : [TEXTFIELD_SEARCH]
     end 
 
-    if (params[:item] == "coloMS.controller.Models")
+    if (["coloMS.controller.Models", "coloMS.controller.Distributors"].include?(params[:item]))
       @respond = current_user[:roles].include?("admin") ? [CONTEXT_MENU_EDIT, CONTEXT_MENU_DELETE] : []
     end   
     

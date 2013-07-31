@@ -39,7 +39,8 @@ Ext.application({
         'Inventory',
         'Models',
         'Staff',
-        'Options'
+        'Options',
+        'Distributors'
     ],
     name: 'coloMS',
 
