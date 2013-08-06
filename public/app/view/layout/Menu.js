@@ -88,7 +88,13 @@ Ext.define('coloMS.view.layout.Menu', {
                                 itemId: 'inventory-distributors',
                                 iconCls: 'silk-lorry',
                                 text: 'Distributors'
-                            }                            
+                            },
+                            {
+                                xtype: 'menuitem',
+                                itemId: 'inventory-orders',
+                                iconCls: 'silk-cart',
+                                text: 'Orders'
+                            }                                                            
                         ]
                     }
                 }

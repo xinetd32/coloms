@@ -14,6 +14,7 @@ Ext.define('coloMS.controller.Base', {
         record.store.rejectChanges();
         // make request for detail record
         Ext.Ajax.request({
+          method: 'get',
           url: record.store.getProxy().url + '/' + record.internalId + '.json',
           callback: function( options, success, response ) {
               if( success ) {

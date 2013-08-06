@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   
+  has_many :orders
+  
   easy_roles :roles
 
   def self.authenticate(email, password)

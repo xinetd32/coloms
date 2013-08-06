@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730071118) do
+ActiveRecord::Schema.define(:version => 20130805135543) do
 
   create_table "distributors", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(:version => 20130730071118) do
     t.integer  "product_type_id"
   end
 
+  create_table "model_orders", :force => true do |t|
+    t.integer "model_id"
+    t.integer "order_id"
+    t.integer "quantity"
+  end
+
+  add_index "model_orders", ["model_id", "order_id"], :name => "index_model_orders_on_model_id_and_order_id"
+  add_index "model_orders", ["model_id"], :name => "index_model_orders_on_model_id"
+
   create_table "models", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -49,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130730071118) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
   end
 
   create_table "permissions", :force => true do |t|

@@ -25,7 +25,7 @@ gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'easy_roles'
 gem 'websocket-rails'
-
+gem 'hirb'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

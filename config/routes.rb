@@ -25,6 +25,9 @@ ColoMS::Application.routes.draw do
     resources :distributors
     post "/distributors/:id(.:format)" => "distributors#create"
     
+    resources :orders
+    post "/orders/:id(.:format)" => "orders#create"    
+    
   end
   
   namespace :options do

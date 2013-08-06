@@ -40,7 +40,8 @@ Ext.application({
         'Models',
         'Staff',
         'Options',
-        'Distributors'
+        'Distributors',
+        'Orders'
     ],
     name: 'coloMS',
 

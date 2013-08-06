@@ -3,6 +3,9 @@ class Model < ActiveRecord::Base
   
   belongs_to :vendor
   belongs_to :product_type
+  has_many :model_orders
+#  has_and_belongs_to_many :orders
+  has_many :orders, :through => :model_orders 
   
   validates :name, presence: true
   

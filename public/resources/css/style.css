@@ -64,6 +64,8 @@
 .icon-arrow-down { background-image: url(arrow-down.gif) !important; background-repeat: no-repeat; }
 .icon-save { background-image: url(save.gif) !important; background-repeat: no-repeat; }
 
+.silk-cart { background-image: url(../images/icons/cart.png) !important; background-repeat: no-repeat; }
+
 .silk-accept { background-image: url(../images/icons/accept.png) !important; background-repeat: no-repeat; }
 .silk-add { background-image: url(../images/icons/add.png) !important; background-repeat: no-repeat; }
 .silk-arrow-join { background-image: url(../images/icons/arrow_join.png) !important; background-repeat: no-repeat; }
