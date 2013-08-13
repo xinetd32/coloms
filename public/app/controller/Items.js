@@ -101,7 +101,7 @@ Ext.define('coloMS.controller.Items', {
     },
 
     onBeforeEditPropertyGrid: function(editor, e, eOpts) {
-        var editableFields = ['guaranty_service', 'status', 'description', 'guaranty'];
+        var editableFields = ['guaranty_service', 'status', 'description', 'guaranty', 'condition'];
         return Ext.Array.contains(editableFields, e.record.data.name);
     },
 
