@@ -6,7 +6,7 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
         'Ext.form.FieldContainer',
         'coloMS.ux.form.field.RemoteComboBox',
         'coloMS.ux.form.field.plugin.ClearTrigger',
-        'Ext.layout.container.Form'
+        'Ext.layout.container.Form',
     ],
     
     layout: 'form',
@@ -14,7 +14,7 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
         labelAlign: 'right',
         margins: '0 10 0 10'
     },
-    width: 600,
+    width: 900,
     bodyPadding: 10,
     frame: true,  
 
@@ -25,7 +25,7 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
             items: [
                 {
                     xtype: 'ux.form.field.remotecombobox',
-                    name: 'distributor',
+                    name: 'distributor_id',
                     fieldLabel: 'Distributor',
                     displayField: 'name',
                     valueField: 'id',
@@ -38,7 +38,7 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
                         }
                     ],
                     editable: false,
-                    forceSelection: true,
+                    forceSelection: true
                     //tpl: '<tpl for="."><div class="x-combo-list-item" ><b>{name}</b> - [{description}]</div></tpl>',
                 },
                 {
@@ -57,51 +57,12 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
                     title: 'Models'
                 },
                 {
-                    xtype: 'grid',
+                    xtype: 'orderItemsList',
                     height: 250,
-                    itemId: 'orderItems',
                     title: 'Order Items',
                     store: Ext.create('coloMS.store.inventory.OrderItems',{
                         //pageSize: 30
                     }), 
-                    
-                    plugins: coloMS.LoggedInUser.inRole('admin') ? [
-                        Ext.create('Ext.grid.plugin.RowEditing', {
-          
-                        })
-                    ] : [],                                       
-                    columns: [
-
-                        {
-                            xtype: 'gridcolumn',
-                            dataIndex: '_vendors__name',
-                            text: 'Vendor',
-                            flex: 1,
-                        },
-                        {
-                            xtype: 'gridcolumn',
-                            dataIndex: '_product_types__name',
-                            text: 'Type',
-                            flex: 0.5,
-                        },
-                        {
-                            xtype: 'gridcolumn',
-                            dataIndex: 'name',
-                            text: 'Name',
-                            flex: 1,
-      
-                        },
-                        {
-                            xtype: 'gridcolumn',
-                            dataIndex: 'quantity',
-                            text: 'Quantity',
-                            flex: 0.5,
-                            editor: {
-                                xtype: 'numberfield',
-                                minValue: 1
-                            }                            
-                        }                        
-                    ]  
                 }
             ],
         });

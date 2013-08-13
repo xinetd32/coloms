@@ -6,12 +6,13 @@ Ext.define('coloMS.view.inventory.orders.edit.Window', {
         'coloMS.view.inventory.orders.edit.Form'
     ],
 
-    width: 800,
+    width: 900,
     layout: {
         type: 'fit'
     },
     constrainHeader: true,
     modal: true,
+    editable: false,
 
     initComponent: function() {
         var me = this;

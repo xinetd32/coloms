@@ -26,7 +26,15 @@ ColoMS::Application.routes.draw do
     post "/distributors/:id(.:format)" => "distributors#create"
     
     resources :orders
-    post "/orders/:id(.:format)" => "orders#create"    
+    post "/orders/:id(.:format)" => "orders#create" 
+
+    resources :items
+    post "/items/:id(.:format)" => "items#create"          
+
+    resources :order_items
+    post "/order_items/:id(.:format)" => "order_items#create"    
+    match "get_conditions" => "order_items#get_conditions"
+    match "get_guaranty_services" => "order_items#get_guaranty_services"
     
   end
   

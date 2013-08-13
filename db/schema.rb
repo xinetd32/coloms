@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805135543) do
+ActiveRecord::Schema.define(:version => 20130811054612) do
 
   create_table "distributors", :force => true do |t|
     t.string   "name"
@@ -24,21 +24,24 @@ ActiveRecord::Schema.define(:version => 20130805135543) do
   end
 
   create_table "items", :force => true do |t|
-    t.integer  "order_id"
-    t.integer  "distributor_id"
-    t.integer  "vendor_id"
-    t.integer  "product_order_id"
-    t.integer  "product_invoce_id"
     t.string   "description"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "condition"
+    t.integer  "guaranty"
+    t.string   "guaranty_service"
+    t.string   "status"
+    t.integer  "location_id"
+    t.integer  "order_id"
+    t.integer  "vendor_id"
     t.integer  "product_type_id"
+    t.integer  "model_id"
   end
 
   create_table "model_orders", :force => true do |t|
     t.integer "model_id"
     t.integer "order_id"
-    t.integer "quantity"
+    t.integer "item_id"
   end
 
   add_index "model_orders", ["model_id", "order_id"], :name => "index_model_orders_on_model_id_and_order_id"
@@ -56,9 +59,10 @@ ActiveRecord::Schema.define(:version => 20130805135543) do
   create_table "orders", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "user_id"
+    t.integer  "distributor_id"
   end
 
   create_table "permissions", :force => true do |t|

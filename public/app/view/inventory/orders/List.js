@@ -40,10 +40,30 @@ Ext.define('coloMS.view.inventory.orders.List', {
                     }                    
                 },
                 {
+                    xtype: 'gridcolumn',
+                    dataIndex: '_user__email',
+                    text: 'Creator email',
+                    flex: 0.5, 
+                    filter: {
+                        type: 'string',
+                        sqlField: 'users.email'
+                    }                                       
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: '_distributor__name',
+                    text: 'Distributor',
+                    flex: 0.5, 
+                    filter: {
+                        type: 'string',
+                        sqlField: 'distributors.name'
+                    }                                       
+                },                  
+                {
                     xtype: 'datecolumn',
                     dataIndex: 'created_at',
                     text: 'Create date',
-                    flex: 1,
+                    flex: 0.5,
                     filter: {
                         type: 'date',
                         sqlField: 'orders.created_at'
@@ -58,16 +78,6 @@ Ext.define('coloMS.view.inventory.orders.List', {
                         type: 'string',
                         sqlField: 'models.description'
                     }                    
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'user_id',
-                    text: 'UserID',
-                    flex: 0.5, 
-                    filter: {
-                        type: 'int',
-                        sqlField: 'user.id'
-                    }                                       
                 }
             ],
             dockedItems: [

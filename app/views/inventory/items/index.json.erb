@@ -12,15 +12,20 @@
   <%    respond[:id]=row.id %>    
   <%    respond[:created_at]=row.created_at %>
   <%    respond[:updated_at]=row.updated_at %>  
-  <%    respond[:name]=row.name %>
   <%    respond[:description]=row.description %>
-  <%    respond[:user_id]=row.user_id %>
-  <%    respond[:distributor_id]=row.distributor_id %>  
-  <%    respond[:_distributor__name]=row.distributor.name %>   
-  <%    respond[:_user__email]= row.user.email %>
-  <%    respond[:_user__first_name]= row.user.first_name %>
-  <%    respond[:_user__last_name]= row.user.last_name %>
+  <%    respond[:product_type]=row.product_type.name %> 
+  <%    respond[:vendor_name]=row.vendor.name %>    
+  <%    respond[:model_name]=row.model.name %>
+  <%    respond[:order_id]= row.order.id %>
+  <%    respond[:condition]= row.condition %> 
+  <%    respond[:guaranty]= row.guaranty %>
+  <%    respond[:guaranty_service]= row.guaranty_service %>
+  <%    respond[:status]= row.status %> 
+  <%    respond[:location_id]= row.location_id %>   
+    
   <%= respond.to_json(jsonOptions).to_s.html_safe %>,
   <% end %>
+  
   ]
 }
+

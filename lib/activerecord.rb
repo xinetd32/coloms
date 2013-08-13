@@ -41,6 +41,7 @@ class ActiveRecord::Base
         join_table  = reflection.options[:join_table].to_sym
         relation = relation.joins(refName).where(join_table => {foreign_key => params[foreign_key]})
       end
+      
     end
 
   #handling ExtJS filters
@@ -123,7 +124,10 @@ class ActiveRecord::Base
             when 'ne'
               fs_tmp = '!='
           end
-          #Note: I modified DateFilter.js 'dateFormat' from 'm/d/Y' to 'Y-m-d'
+          #Note: I modified DateFilter.js 'dateFormat' from 'm/d/Y' to 'Y-m-d'  Date::strptime(gf_value, "%m/%d/%Y")
+          puts "=======S=========="
+          puts gf_value.class
+          puts "=======E=========="
           fs_tmp = gf_field + ' ' + fs_tmp + ' \'' + gf_value + '\'' unless fs_tmp.empty?
       end
       if not fs_tmp.empty?

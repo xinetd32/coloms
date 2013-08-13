@@ -3,6 +3,10 @@ Ext.define('coloMS.model.inventory.OrderItem', {
     
     fields: [
         {
+            name: 'id',
+            type: 'int'
+        },
+        {
             name: 'vendor_id',
             type: 'int'
         },
@@ -10,6 +14,10 @@ Ext.define('coloMS.model.inventory.OrderItem', {
             name: 'product_type_id',
             type: 'int'
         },
+        {
+            name: 'order_id',
+            type: 'int'
+        },        
         // decorate releashions
         {
             name: '_vendors__name',
@@ -25,6 +33,18 @@ Ext.define('coloMS.model.inventory.OrderItem', {
             name: 'quantity',
             type: 'int',
             defaultValue: 1
+        },
+        {
+            name: 'condition',
+            type: 'string'
+        },
+        {
+            name: 'guaranty',
+            type: 'int'
+        },
+        {
+            name: 'guaranty_service',
+            type: 'string'
         }
     ]
 });

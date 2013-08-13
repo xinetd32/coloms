@@ -3,20 +3,34 @@ Ext.define('coloMS.model.inventory.Order', {
     fields: [
         //"user_id":1,"_user__name":"xinetd@ukr.net","_user__first_name":"Oleg","_user__last_name":"Sobyna"
         {
-            name: 'user_id',
+            name: 'distributor_id',
             type: 'int'
+        },        
+        {
+            name: 'user_id',
+            type: 'int',
+            persist: false
+        },
+        // decorate
+        {
+            name: '_user__email',
+            type: 'string',
+            persist: false
         },
         {
-            name: '_user__name',
-            type: 'string'
-        },
+            name: '_distributor__name',
+            type: 'string',
+            persist: false
+        },        
         {
             name: '_user__first_name',
-            type: 'string'
+            type: 'string',
+            persist: false
         },
         {
             name: '_user__last_name',
-            type: 'string'
+            type: 'string',
+            persist: false
         }                    
     ]
 });

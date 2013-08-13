@@ -1,0 +1,28 @@
+<% jsonOptions = @jsonOptions || {} %>
+{
+    success: true,
+  <% if @result.class == ActiveRecord::Relation %>
+    total:<%= @result.except(:limit, :offset).count.count %>,
+  <% end %>
+  
+  rows:[
+  
+  <% respond={} %>
+  <% @result.each do |row| %>
+  <%    respond[:id]=row.id %>    
+  <%    respond[:created_at]=row.created_at %>
+  <%    respond[:updated_at]=row.updated_at %>  
+  <%    respond[:description]=row.description %>
+  <%    respond[:condition]=row.condition %>
+  <%    respond[:guaranty]=row.guaranty %>  
+  <%    respond[:guaranty_service]=row.guaranty_service %> 
+  <%    respond[:status]=row.status %>       
+  <%    respond[:vendor_id]=row.model.vendor_id %>
+  <%    respond[:product_type_id]=row.model.product_type_id %>  
+  <%    respond[:quantity]=1 %>   
+  <%    respond[:_vendors__name]= row.model.vendor ? row.model.vendor.name : 'NoName'%>
+  <%    respond[:_product_types__name]= row.model.product_type ? row.model.product_type.name : 'NoType' %>  
+  <%= respond.to_json(jsonOptions).to_s.html_safe %>,
+  <% end %>
+  ]
+}
