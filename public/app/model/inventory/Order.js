@@ -11,6 +11,18 @@ Ext.define('coloMS.model.inventory.Order', {
             type: 'int',
             persist: false
         },
+        {
+            name: 'dis_offer',
+            type: 'string'
+        },
+        {
+            name: 'dis_order',
+            type: 'string'
+        },
+        {
+            name: 'dis_invoce',
+            type: 'string'
+        },       
         // decorate
         {
             name: '_user__email',

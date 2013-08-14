@@ -10,6 +10,10 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
     ],
     
     layout: 'form',
+    fieldDefaults: {
+        flex: 1,
+        margins: 5
+    },    
     defaults: {
         labelAlign: 'right',
         margins: '0 10 0 10'
@@ -24,30 +28,72 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'ux.form.field.remotecombobox',
-                    name: 'distributor_id',
-                    fieldLabel: 'Distributor',
-                    displayField: 'name',
-                    valueField: 'id',
-                    store: {
-                        type: 'inventory.distributors'
-                    },
-                    plugins: [
+                    xtype: 'fieldcontainer',
+                    layout: 'column',
+                    margins: '0 10 0 10',
+                    items: [
                         {
-                            ptype: 'cleartrigger'
+                            xtype: 'fieldset',
+                            title: 'Order',
+                            columnWidth: 0.5,
+                            defaults: {anchor: '100%'},
+                            layout: 'anchor', 
+                            items: [
+                                {
+                                    xtype: 'ux.form.field.remotecombobox',
+                                    name: 'distributor_id',
+                                    fieldLabel: 'Distributor',
+                                    displayField: 'name',
+                                    valueField: 'id',
+                                    store: {
+                                        type: 'inventory.distributors'
+                                    },
+                                    plugins: [
+                                        {
+                                            ptype: 'cleartrigger'
+                                        }
+                                    ],
+                                    editable: false,
+                                    forceSelection: true
+                                    //tpl: '<tpl for="."><div class="x-combo-list-item" ><b>{name}</b> - [{description}]</div></tpl>',
+                                },
+                                {
+                                    xtype: 'textarea',
+                                    name: 'description',
+                                    fieldLabel: 'Description',
+                                    height: 30,
+                                    grow: true,
+                                },                                
+                            ]
+                        },
+                        {
+                            xtype: 'fieldset',
+                            title: 'Distributor Parameters',
+                            columnWidth: 0.5, 
+                            defaults: {anchor: '100%'},
+                            layout: 'anchor',                            
+                            items: [
+
+                                {
+                                    xtype: 'textfield',
+                                    name: 'dis_offer',
+                                    fieldLabel: 'Dis Offer'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    name: 'dis_order',
+                                    fieldLabel: 'Dis Order'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    name: 'dis_invoce',
+                                    fieldLabel: 'Dis Invoice'
+                                }                            
+                            ]
                         }
-                    ],
-                    editable: false,
-                    forceSelection: true
-                    //tpl: '<tpl for="."><div class="x-combo-list-item" ><b>{name}</b> - [{description}]</div></tpl>',
+                    ]
                 },
-                {
-                    xtype: 'textarea',
-                    name: 'description',
-                    fieldLabel: 'Description',
-                    height: 30,
-                    grow: true,
-                },
+            
                 {
                     xtype: 'ordersModelsList',
                     store: Ext.create('coloMS.store.inventory.Models',{

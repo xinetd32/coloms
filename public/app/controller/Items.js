@@ -7,7 +7,10 @@ Ext.define('coloMS.controller.Items', {
         'inventory.items.Property'
     ],
     stores: [
-        'inventory.Items'
+        'inventory.Items',
+        'inventory.GuarantyServices',
+        'inventory.Conditions',
+        'inventory.ItemStatuses'
     ],
     refs: [
         {
@@ -84,9 +87,36 @@ Ext.define('coloMS.controller.Items', {
     
     onItemClick: function(grid, record, item, index, e, eOpts) {
         if (record) {
-          // TODO: разобраться почему не отработала конструкция this.getDeviceProperty().setSource(record.data);;
-            var dp = Ext.ComponentQuery.query('itemsProperty')[0];
-            dp.setSource(record.getData());
+            var dp = this.getItemsProperty(),
+                sourceConfig = {
+                    'guaranty_service': {
+                        editor: Ext.create('Ext.form.ComboBox', {                       
+                                    store: Ext.create('coloMS.store.inventory.GuarantyServices'), 
+                                    displayField: 'name',
+                                    valueField: 'name'
+                                }) 
+                    },
+                    'condition': {
+                        editor: Ext.create('Ext.form.ComboBox', {                       
+                                    store: Ext.create('coloMS.store.inventory.Conditions'), 
+                                    displayField: 'name',
+                                    valueField: 'name'
+                              })
+                    },
+                    'guaranty': {
+                        editor: Ext.create('Ext.form.field.Number' , {
+                                    minValue: 0
+                                })
+                    }, 
+                    'status': {
+                        editor: Ext.create('Ext.form.ComboBox', {                       
+                                    store: Ext.create('coloMS.store.inventory.ItemStatuses'), 
+                                    displayField: 'name',
+                                    valueField: 'name'
+                              })
+                    }                     
+                };
+            dp.setSource(record.getData(), sourceConfig);
         }
     },
 

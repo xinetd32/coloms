@@ -20,7 +20,7 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                             xtype: 'gridcolumn',
                             dataIndex: '_vendors__name',
                             text: 'Vendor',
-                            flex: 1,
+                            flex: 0.5,
                         },
                         {
                             xtype: 'gridcolumn',
@@ -28,15 +28,12 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                             text: 'Type',
                             flex: 0.5,
                         },
-                      /*
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'name',
                             text: 'Name',
-                            flex: 0.5,
-      
+                            flex: 1
                         },
-                       */ 
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'condition',
@@ -67,15 +64,18 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                             xtype: 'gridcolumn',
                             dataIndex: 'guaranty_service',
                             text: 'Guaranty_service',
-                            flex: 0.7,
+                            flex: 0.5,
                             editor: {
                                 xtype: 'combobox',
                                 displayField: 'name',
                                 valueField: 'name',
                                 triggerAction: 'all',
+                                /*
                                 store: {
                                     type: 'inventory.guarantyServices'
-                                }, 
+                                },
+                                */
+                               store: Ext.create('coloMS.store.inventory.GuarantyServices'), 
                                 editable: false,
                                 forceSelection: true                                                               
                             }
@@ -84,13 +84,19 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                             xtype: 'gridcolumn',
                             dataIndex: 'quantity',
                             text: 'Quantity',
-                            flex: 0.5,
+                            flex: 0.3,
                             summaryType: 'count',
                             editor: {
                                 xtype: 'numberfield',
                                 minValue: 1
                             }                            
                         },
+                        {
+                            xtype: 'gridcolumn',
+                            dataIndex: 'status',
+                            text: 'Status',
+                            flex: 0.3           
+                        },                        
                         {
                             xtype: 'actioncolumn',
                             width:50,

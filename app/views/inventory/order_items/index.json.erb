@@ -16,10 +16,11 @@
   <%    respond[:condition]=row.condition %>
   <%    respond[:guaranty]=row.guaranty %>  
   <%    respond[:guaranty_service]=row.guaranty_service %> 
-  <%    respond[:status]=row.status %>       
+  <%    respond[:status]=row.status %> 
   <%    respond[:vendor_id]=row.model.vendor_id %>
   <%    respond[:product_type_id]=row.model.product_type_id %>  
   <%    respond[:quantity]=1 %>   
+  <%    respond[:name]=row.model.name %>    
   <%    respond[:_vendors__name]= row.model.vendor ? row.model.vendor.name : 'NoName'%>
   <%    respond[:_product_types__name]= row.model.product_type ? row.model.product_type.name : 'NoType' %>  
   <%= respond.to_json(jsonOptions).to_s.html_safe %>,

@@ -30,6 +30,11 @@ Ext.define('coloMS.model.inventory.OrderItem', {
             persist: false
         },
         {
+            name: 'name',
+            type: 'string',
+            persist: false
+        },        
+        {
             name: 'quantity',
             type: 'int',
             defaultValue: 1
@@ -45,6 +50,10 @@ Ext.define('coloMS.model.inventory.OrderItem', {
         {
             name: 'guaranty_service',
             type: 'string'
-        }
+        },
+        {
+            name: 'status',
+            type: 'string'
+        }        
     ]
 });

@@ -155,6 +155,7 @@ Ext.define('coloMS.controller.Orders', {
             store = grid.getStore();
             var qirecord = Ext.create('coloMS.model.inventory.OrderItem', record.data);
             var findRecord = store.findRecord('id', qirecord.data.id);
+            qirecord.set('status', 'in-order');
         if (!win.editable) return;    
         if ( findRecord ) {
             var quantity = findRecord.get('quantity');
@@ -271,6 +272,7 @@ Ext.define('coloMS.controller.Orders', {
         win.show();
         // load form with data
         win.down( 'form' ).loadRecord( record );
+       // console.log(record);
         if(!isNew) {
             var grid = me.getOrderItemsList(),
                 store = grid.getStore(),

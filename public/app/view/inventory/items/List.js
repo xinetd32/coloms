@@ -63,7 +63,17 @@ Ext.define('coloMS.view.inventory.items.List', {
                         type: 'string',
                         sqlField: 'items.status'
                     }                   
-                }                                 
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'location_id',
+                    text: 'Location',
+                    flex: 0.2,
+                    filter: {
+                        type: 'int',
+                        sqlField: 'items.location_id'
+                    }                   
+                }                                                     
             ],
             plugins: coloMS.LoggedInUser.inRole('admin') ? [
                 Ext.create('Ext.grid.plugin.RowEditing', {

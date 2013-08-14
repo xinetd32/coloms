@@ -22,6 +22,8 @@ Ext.define('coloMS.controller.Base', {
                   data = Ext.decode( response.responseText, true );
                           // update record
                   record.set( data );
+                  console.log(data);
+                  console.log(record);
                   // call callback method
                   callbackFn.call( scope, record, extraData );
               }

@@ -1,6 +1,7 @@
 class Inventory::OrderItemsController < ApplicationController
   CONDITIONS = [{id: 1, name: "New"}, {id: 2, name: "Refurbished"}]
   GUARANTY_SERVICES = [{id: 1, name: "NBD"}, {id: 2, name: "AFTER"}, {id: 3, name: "BEFOR"}]
+  ITEM_STATUSES = [{id: 1, name: "in-order"}, {id: 2, name: "in-use"}, {id: 3, name: "fail-order"}, {id: 4, name: "in-stock"}]
   
   def index
     order = Order.find(params[:order_id])
@@ -46,5 +47,9 @@ class Inventory::OrderItemsController < ApplicationController
     render :template => 'application/extStoreNoTotal.json.erb'
   end
   
+  def get_item_statuses
+    @result = ITEM_STATUSES
+    render :template => 'application/extStoreNoTotal.json.erb'    
+  end
   
 end

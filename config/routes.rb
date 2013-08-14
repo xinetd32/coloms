@@ -35,6 +35,7 @@ ColoMS::Application.routes.draw do
     post "/order_items/:id(.:format)" => "order_items#create"    
     match "get_conditions" => "order_items#get_conditions"
     match "get_guaranty_services" => "order_items#get_guaranty_services"
+    match "get_item_statuses" => "order_items#get_item_statuses"
     
   end
   
