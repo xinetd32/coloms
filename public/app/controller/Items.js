@@ -49,10 +49,30 @@ Ext.define('coloMS.controller.Items', {
                 'itemsProperty textfield[name=searchField]': {
                     change: this.onChangeFilterField,
                     specialkey: this.onClearField
+                },
+                'itemsProperty combobox#locationCombo': {
+                                        
+                                        select: function(combo, records, eOpts) {
+                                            //console.log(records);
+                                            //this.getItemsProperty().render();
+                                            //this.getItemsProperty().getStore().reload();
+                                            //this.getItemsList().getStore().reload();
+                                            //combo.setValue(records[0].get('name'));
+                                         /*
+                                          console.log("982734923749273");
+                                            console.log(records);
+                                            this.getItemsList().getStore().reload();
+                                            this.getItemsProperty().getStore().reload();
+                                        */
+                                        }                    
                 }
             },
             global: {},
-            store: {}
+            store: {
+              '#inventory.Items': { 
+                  update: this.onItemClick
+              }
+            }
         });
     },
 
@@ -114,8 +134,44 @@ Ext.define('coloMS.controller.Items', {
                                     displayField: 'name',
                                     valueField: 'name'
                               })
-                    }                     
-                };
+                    },
+                    'location_id': {
+                        editor: Ext.create('Ext.form.ComboBox', {                       
+                                    store: Ext.create('coloMS.store.inventory.Equipments',{
+                                        autoLoad: true,
+                                        pageSize: 1000000000000,
+                                    }), 
+                                    itemId: 'locationCombo',
+                                    displayField: 'name',
+                                    valueField: 'id',
+                                    minChars: 2,
+                                    forceSelection: true,
+                                    typeAhead: true,                                    
+                                    listeners: {
+                                        buffer: 500,
+                                        change: function() {
+                                            var store = this.store;
+                                            //store.suspendEvents();
+                                            store.clearFilter();
+                                            //store.resumeEvents();
+                                            store.proxy.extraParams = this.getValue() == '' ? {} : { query : this.getValue() };
+                                            store.reload();
+                                        }
+                                    }                                    
+                                }),
+                                
+                        renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                            store.findBy(function(record) {
+                                if (record.get('name') === '_location') {
+                                    v = record.get('value');
+                                    return true; // findby
+                                }                        
+                            }); 
+                            return v;                           
+                        }
+                        
+                    }
+            };                                                    
             dp.setSource(record.getData(), sourceConfig);
         }
     },
@@ -131,7 +187,7 @@ Ext.define('coloMS.controller.Items', {
     },
 
     onBeforeEditPropertyGrid: function(editor, e, eOpts) {
-        var editableFields = ['guaranty_service', 'status', 'description', 'guaranty', 'condition'];
+        var editableFields = ['guaranty_service', 'status', 'description', 'guaranty', 'condition','location_id'];
         return Ext.Array.contains(editableFields, e.record.data.name);
     },
 

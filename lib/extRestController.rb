@@ -6,7 +6,7 @@ module ExtRestController
 
   def show
     @result = defaultModel.where(:id => params[:id])
-    render :template => 'application/extStore.json.erb'
+    render :template => 'application/extStoreNoTotal.json.erb'
   end
 
   def create

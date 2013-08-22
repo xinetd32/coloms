@@ -1,17 +1,17 @@
-Ext.define('coloMS.view.inventory.items.List', {
+Ext.define('coloMS.view.inventory.equipments.ItemsList', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.itemsList',
+    alias: 'widget.equipmentsItemsList',
 
     requires: [
         'Ext.grid.plugin.RowEditing',
-        'Ext.toolbar.Paging',
-        'coloMS.store.inventory.Items'
+        'Ext.toolbar.Paging'
     ],
 
     height: 250,
     width: 400,
     iconCls: 'silk-wrench',
     store: 'inventory.Items',
+    title: 'Items',
 
     initComponent: function() {
         var me = this;
@@ -64,35 +64,7 @@ Ext.define('coloMS.view.inventory.items.List', {
                         sqlField: 'items.status'
                     }                   
                 },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'location_id',
-                    text: 'LocationID',
-                    flex: 0.2,
-                    filter: {
-                        type: 'int',
-                        sqlField: 'items.location_id'
-                    }                   
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: '_location',
-                    text: 'Location Name',
-                    flex: 0.5,
-                    filter: {
-                        type: 'string',
-                        sqlField: 'equipments.name'
-                    }                   
-                }                                                                      
-            ],
-            plugins: coloMS.LoggedInUser.inRole('admin') ? [
-                Ext.create('Ext.grid.plugin.RowEditing', {
-
-                })
-            ] : [],
-            features: [{
-                ftype: 'filters'
-            }],            
+            ],       
             dockedItems: [
                 {
                     xtype: 'toolbar',

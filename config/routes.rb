@@ -29,7 +29,10 @@ ColoMS::Application.routes.draw do
     post "/orders/:id(.:format)" => "orders#create" 
 
     resources :items
-    post "/items/:id(.:format)" => "items#create"          
+    post "/items/:id(.:format)" => "items#create"    
+    
+    resources :equipments
+    post "/equipments/:id(.:format)" => "equipments#create"           
 
     resources :order_items
     post "/order_items/:id(.:format)" => "order_items#create"    

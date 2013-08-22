@@ -37,8 +37,12 @@ Ext.define('coloMS.model.inventory.Item', {
          {
             name: 'location_id',
             type: 'int'
-        }                
+        },                
 
         // decorate releashions
+         {
+            name: '_location',
+            type: 'string'
+        }           
     ]
 });

@@ -10,4 +10,5 @@ class Item < ActiveRecord::Base
   belongs_to :vendor
   belongs_to :product_type
   belongs_to :product_invoice
+  belongs_to :location, :class_name => "Equipment"
 end

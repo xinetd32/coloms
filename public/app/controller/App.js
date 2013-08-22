@@ -162,6 +162,12 @@ Ext.define('coloMS.controller.App', {
                 title: 'Items'
             };        
             break; 
+            case 'inventory-equipments':
+            config = {
+                xtype: 'equipmentsMain',
+                title: 'Equipments'
+            };        
+            break; 
                                                   
             default: 
             config = {

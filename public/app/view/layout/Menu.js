@@ -100,7 +100,13 @@ Ext.define('coloMS.view.layout.Menu', {
                                 itemId: 'inventory-items',
                                 iconCls: 'silk-wrench',
                                 text: 'Items'
-                            }                                                            
+                            },
+                            {
+                                xtype: 'menuitem',
+                                itemId: 'inventory-equipments',
+                                iconCls: 'silk-computer',
+                                text: 'Equipments'
+                            }                                                                                          
                         ]
                     }
                 }

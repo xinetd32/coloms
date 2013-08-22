@@ -5,10 +5,10 @@
     total:<%= @result.except(:limit, :offset).count %>,
   <% end %>
   
-  rows:[
+  rows:
   
   <% respond={} %>
-  <% @result.each do |row| %>
+  <% row=@result %>
   <%    respond[:id]=row.id %>    
   <%    respond[:created_at]=row.created_at %>
   <%    respond[:updated_at]=row.updated_at %>  
@@ -24,9 +24,6 @@
   <%    respond[:location_id]= row.location_id %>
   <%    respond[:_location]= row.location ? row.location.name : '' %>    
     
-  <%= respond.to_json(jsonOptions).to_s.html_safe %>,
-  <% end %>
-  
-  ]
+  <%= respond.to_json(jsonOptions).to_s.html_safe %>
 }
 
