@@ -49,29 +49,13 @@ Ext.define('coloMS.controller.Items', {
                 'itemsProperty textfield[name=searchField]': {
                     change: this.onChangeFilterField,
                     specialkey: this.onClearField
-                },
-                'itemsProperty combobox#locationCombo': {
-                                        
-                                        select: function(combo, records, eOpts) {
-                                            //console.log(records);
-                                            //this.getItemsProperty().render();
-                                            //this.getItemsProperty().getStore().reload();
-                                            //this.getItemsList().getStore().reload();
-                                            //combo.setValue(records[0].get('name'));
-                                         /*
-                                          console.log("982734923749273");
-                                            console.log(records);
-                                            this.getItemsList().getStore().reload();
-                                            this.getItemsProperty().getStore().reload();
-                                        */
-                                        }                    
                 }
             },
             global: {},
             store: {
-              '#inventory.Items': { 
-                  update: this.onItemClick
-              }
+                '#inventory.Items': { 
+                    update: this.onItemClick
+                }
             }
         });
     },
