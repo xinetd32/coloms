@@ -10,7 +10,8 @@ Ext.define('coloMS.view.inventory.orders.List', {
     
     requires: [
         'coloMS.ux.form.field.plugin.ClearTrigger',
-        'Ext.toolbar.Spacer'
+        'Ext.toolbar.Spacer',
+        'Ext.layout.container.Column'
     ],
     
 
@@ -29,6 +30,16 @@ Ext.define('coloMS.view.inventory.orders.List', {
                         sqlField: 'orders.id'
                     }
                 },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'order_status',
+                    text: 'Order Status',
+                    flex: 0.3,
+                    filter: {
+                        type: 'string',
+                        sqlField: 'orders.order_status'
+                    }
+                },                
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'name',

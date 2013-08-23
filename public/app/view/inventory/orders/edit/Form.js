@@ -58,12 +58,22 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
                                     //tpl: '<tpl for="."><div class="x-combo-list-item" ><b>{name}</b> - [{description}]</div></tpl>',
                                 },
                                 {
-                                    xtype: 'textarea',
+                                    xtype: 'textfield',
                                     name: 'description',
-                                    fieldLabel: 'Description',
-                                    height: 30,
-                                    grow: true,
-                                },                                
+                                    fieldLabel: 'Description'
+                                },
+                                {
+                                    xtype: 'ux.form.field.remotecombobox',
+                                    name: 'order_status',
+                                    fieldLabel: 'Order status',
+                                    displayField: 'name',
+                                    valueField: 'name',
+                                    store: {
+                                        type: 'inventory.orderStatuses'
+                                    },
+                                    editable: false,
+                                    forceSelection: true
+                                }                                                                
                             ]
                         },
                         {

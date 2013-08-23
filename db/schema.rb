@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815080930) do
+ActiveRecord::Schema.define(:version => 20130823111328) do
 
   create_table "distributors", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20130815080930) do
     t.string   "dis_offer"
     t.string   "dis_order"
     t.string   "dis_invoce"
+    t.string   "order_status"
   end
 
   create_table "permissions", :force => true do |t|

@@ -27,6 +27,8 @@ ColoMS::Application.routes.draw do
     
     resources :orders
     post "/orders/:id(.:format)" => "orders#create" 
+    match "get_order_status" => "orders#get_order_status"
+    
 
     resources :items
     post "/items/:id(.:format)" => "items#create"    

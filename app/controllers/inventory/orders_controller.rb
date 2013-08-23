@@ -1,4 +1,6 @@
 class Inventory::OrdersController < ApplicationController
+  ORDER_STATUS = [{id: 1, name: "Expected delivery"}, {id: 2, name: "Received"}, {id: 3, name: "Canceled"}]
+  
   include ExtRestController
   def defaultModel
     Order
@@ -6,7 +8,7 @@ class Inventory::OrdersController < ApplicationController
   
   def index
     # Поля по которым производить Live-поиск
-    defaultModel.queryColumns=['orders.id','orders.name', 'users.email', 'users.last_name', 'users.first_name', 'distributors.name']
+    defaultModel.queryColumns=['orders.id','orders.name', 'orders.order_status', 'users.email', 'users.last_name', 'users.first_name', 'distributors.name']
     @result = defaultModel.includes(:user).includes(:distributor).extLimits(params)
   end
 
@@ -17,6 +19,11 @@ class Inventory::OrdersController < ApplicationController
     else
       render :json => {:success => false}.merge({:message => 'Error', :type => 'validation',:data => to_json_msg(@result.errors.messages)})
     end
+  end
+  
+  def get_order_status
+    @result = ORDER_STATUS
+    render :template => 'application/extStoreNoTotal.json.erb'    
   end
 
 end

@@ -36,3 +36,5 @@ m=Model.create(name: 'ProCurve 2650', description: '28 10/100 ports + 4 SFP')
 m.vendor = v
 m.product_type = p
 m.save
+
+d=Distributor.create(name: 'Computeruniverse')

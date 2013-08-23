@@ -11,7 +11,8 @@ Ext.define('coloMS.controller.Orders', {
         'coloMS.store.inventory.Conditions',
         'coloMS.store.inventory.OrderItems',
         'coloMS.store.inventory.GuarantyServices',
-        'coloMS.view.inventory.orders.edit.OrderItemsList'
+        'coloMS.view.inventory.orders.edit.OrderItemsList',
+        'coloMS.store.inventory.OrderStatuses'
     ],
 
     refs: [
@@ -30,6 +31,10 @@ Ext.define('coloMS.controller.Orders', {
         {
             ref: 'OrderItemsList',
             selector: '[xtype=orderItemsList]'
+        },
+        {
+            ref: 'OrdersModelList',
+            selector: 'ordersModelsList'
         }
     ],
     views: [
@@ -43,7 +48,8 @@ Ext.define('coloMS.controller.Orders', {
         'inventory.Models',
         'inventory.Conditions',
         'inventory.OrderItems',
-        'inventory.GuarantyServices'
+        'inventory.GuarantyServices',
+        'inventory.OrderStatuses'
     ],
 
     init: function() {
@@ -125,7 +131,7 @@ Ext.define('coloMS.controller.Orders', {
                             item: me.$className
                     }                        
                 }              
-            })
+            });
         }
         // show menu relative to item which was right-clicked
        // item.contextMenu.showBy( item );
@@ -149,7 +155,7 @@ Ext.define('coloMS.controller.Orders', {
     },
     
     addModelToOrderItems: function(view, record, item, index, e, eOpts) {
-        var me = this
+        var me = this,
             grid = me.getOrderItemsList(),
             win = grid.up('window'),
             store = grid.getStore();
@@ -190,30 +196,42 @@ Ext.define('coloMS.controller.Orders', {
             win.close();
             return;
         }
+        console.log(win);
         // setup generic callback config for create/save methods
-        callbacks ={
-            success: function( records, operation ) {
-                var order_id = records.operations[0].records[0].data.id,
-                    grid = me.getOrderItemsList(),
-                    store = grid.getStore();
-                store.each(function(rec) {
-                    rec.set('order_id', order_id);
-                });
-                store.sync({
-                    success: function( records, operation ) {
-                       win.close();
-                       me.getOrderList().getStore().reload(); 
-                    },
-                    failure: function( records, operation ) {
-                        store.rejectChanges();
-                    }    
-                });
-            },
-            failure: function( records, operation ) {
-                // if failure, reject changes in store
-                store.rejectChanges();
-            }
-        };
+        if (!win.editable_record) {
+            callbacks = {
+                success: function( records, operation ) {
+                    var order_id = records.operations[0].records[0].data.id,
+                        grid = me.getOrderItemsList(),
+                        store = grid.getStore();
+                    store.each(function(rec) {
+                        rec.set('order_id', order_id);
+                    });
+                    store.sync({
+                        success: function( records, operation ) {
+                           win.close();
+                           me.getOrderList().getStore().reload(); 
+                        },
+                        failure: function( records, operation ) {
+                            store.rejectChanges();
+                        }    
+                    });
+                },
+                failure: function( records, operation ) {
+                    // if failure, reject changes in store
+                    store.rejectChanges();
+                }
+            }; 
+        } else {
+            callbacks = {
+                success: function( records, operation ) {
+                    win.close();
+                },
+                failure: function( records, operation ) {
+                    store.rejectChanges();
+                }              
+            };      
+        }
         // mask to prevent extra submits
         Ext.getBody().mask( 'Saving Order...' );
         // if new record...
@@ -251,9 +269,9 @@ Ext.define('coloMS.controller.Orders', {
                     failure: function( records, operation ) {
                         store.rejectChanges();
                     }
-                })
+                });
             }
-        })
+        });
     },
     
 
@@ -274,11 +292,14 @@ Ext.define('coloMS.controller.Orders', {
         win.down( 'form' ).loadRecord( record );
        // console.log(record);
         if(!isNew) {
+            win.editable_record = true;
             var grid = me.getOrderItemsList(),
                 store = grid.getStore(),
                 button = win.down('button#save');
             store.load({params: {order_id: record.data.id} });
-            button.disable();
+            //button.disable();
+            grid.disable();
+            me.getOrdersModelList().disable();
         }
     }
 });
