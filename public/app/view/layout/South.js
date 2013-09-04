@@ -18,12 +18,21 @@ Ext.define('coloMS.view.layout.South', {
     alias: 'widget.layoutSouth',
 
     style: 'background-color:cornflowerblue',
-
+    
+    layout: 'anchor',
     initComponent: function() {
         var me = this;
 
         Ext.applyIf(me, {
             items: [
+                {
+                    xtype: 'logs',
+                    title: 'Logs',
+                    collapsed: true,
+                    height: 250,
+                    collapsible: true,
+                    store: Ext.create('coloMS.store.Audits'), 
+                },
                 {
                     xtype: 'label',
                     name: 'copiright',

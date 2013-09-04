@@ -11,7 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130823111328) do
+ActiveRecord::Schema.define(:version => 20130904114538) do
+
+  create_table "audits", :force => true do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         :default => 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["associated_id", "associated_type"], :name => "associated_index"
+  add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
+  add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
+  add_index "audits", ["user_id", "user_type"], :name => "user_index"
 
   create_table "distributors", :force => true do |t|
     t.string   "name"
@@ -43,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130823111328) do
     t.integer  "vendor_id"
     t.integer  "product_type_id"
     t.integer  "model_id"
+    t.float    "price"
   end
 
   create_table "model_orders", :force => true do |t|
@@ -61,7 +83,18 @@ ActiveRecord::Schema.define(:version => 20130823111328) do
     t.integer  "product_type_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "power"
   end
+
+  create_table "network_devices", :force => true do |t|
+    t.integer  "equipment_id"
+    t.string   "mgmt_ip_address"
+    t.string   "snmp_community"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "network_devices", ["equipment_id"], :name => "index_network_devices_on_equipment_id"
 
   create_table "orders", :force => true do |t|
     t.string   "name"

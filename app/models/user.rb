@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :orders
   
   easy_roles :roles
+  
+  audited
 
   def self.authenticate(email, password)
     user = find_by_email(email)

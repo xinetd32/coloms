@@ -7,6 +7,7 @@ ColoMS::Application.routes.draw do
   
   match '/get_controls' => 'dashboard#get_controls'
   match '/get_current_user' => 'users#get_current_user'
+  match '/logs' => 'audits#index'
   
   resources :users
   post "/users/:id(.:format)" => "users#create"

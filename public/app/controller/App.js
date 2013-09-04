@@ -17,7 +17,8 @@ Ext.define('coloMS.controller.App', {
     extend: 'coloMS.controller.Base',
 
     requires: [
-        'coloMS.model.security.User'
+        'coloMS.model.security.User',
+        'coloMS.store.Audits'
     ],
     
     views: [
@@ -26,8 +27,14 @@ Ext.define('coloMS.controller.App', {
         'layout.North',
         'layout.South',
         'layout.Center',
-        'layout.Landing'
+        'layout.Landing',
+        'Logs'
     ],
+    
+    store: [
+      'Logs'
+    ],
+    
     refs: [
         {
             ref: 'Menu',
@@ -53,7 +60,15 @@ Ext.define('coloMS.controller.App', {
             component: {
                 'menu[xtype=layoutMenu] menuitem': {
                     click: this.addHistory
-                }
+                },
+                'grid[xtype=logs] textfield#search': {
+                    change: { 
+                      fn: this.onChangeSearchField,
+                      scope: this,
+                      buffer: 500
+                    }  
+                },                
+                
             },
             global: {},
             store: {},
@@ -72,7 +87,7 @@ Ext.define('coloMS.controller.App', {
         var me = this,
             token = item.itemId;
         Ext.util.History.add( token );
-        me.fireEvent( 'tokenchange', token )
+        me.fireEvent( 'tokenchange', token );
 
     },
 
@@ -200,6 +215,11 @@ Ext.define('coloMS.controller.App', {
             // if operation success
             if( request.operation.wasSuccessful() ) {
                 //...
+                if ((request.action == 'create') || (request.action == 'update') || (request.action == 'destroy')) {
+                    var grid = Ext.ComponentQuery.query('grid[xtype=logs]')[0];
+                    var store = grid.getStore();
+                    store.reload();
+                }
             }
             // if operation failure
             else {

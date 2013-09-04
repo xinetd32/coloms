@@ -13,5 +13,5 @@ class Item < ActiveRecord::Base
   belongs_to :location, :class_name => "Equipment"
   
   #validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality =>{:greater_than => 0}
-  
+  audited
 end

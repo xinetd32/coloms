@@ -10,4 +10,6 @@ class Model < ActiveRecord::Base
   validates :name, presence: true
   validates :power, numericality: {:greater_than => 0}
   
+  audited
+  
 end

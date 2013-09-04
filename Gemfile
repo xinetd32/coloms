@@ -26,6 +26,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 gem 'easy_roles'
 gem 'websocket-rails'
 gem 'hirb'
+gem "audited-activerecord", "~> 3.0"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

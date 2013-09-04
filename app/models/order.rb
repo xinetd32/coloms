@@ -11,5 +11,7 @@ class Order < ActiveRecord::Base
   validates :distributor_id, numericality: {greater_than: 0 }
   validates_each  :dis_offer, :dis_order, :dis_invoce do |record, attr, values|
     record.errors.add attr, 'Distributor params is blank' if record.dis_offer.blank? and record.dis_order.blank? and record.dis_invoce.blank?
-  end  
+  end 
+ 
+ audited  
 end

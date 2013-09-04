@@ -1,4 +1,5 @@
 class ActiveRecord::Base
+  
   @queryColumns = []
   
   def self.queryColumns

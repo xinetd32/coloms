@@ -85,11 +85,13 @@ Ext.define('coloMS.view.inventory.items.List', {
                     }                   
                 }                                                                      
             ],
+           /*
             plugins: coloMS.LoggedInUser.inRole('admin') ? [
                 Ext.create('Ext.grid.plugin.RowEditing', {
 
                 })
             ] : [],
+           */ 
             features: [{
                 ftype: 'filters'
             }],            
