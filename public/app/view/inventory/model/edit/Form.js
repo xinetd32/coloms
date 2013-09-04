@@ -80,26 +80,18 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
                     fieldLabel: 'Model'
                 },
                 {
+                    xtype: 'textfield',
+                    name: 'power',
+                    fieldLabel: 'Power Cons.(W)'
+                },                
+                {
                     xtype: 'textarea',
                     name: 'description',
                     fieldLabel: 'Description',
                     height: 150,
                     grow: true,
-                },
-                
+                }
             ],
-           /* 
-            defaults: {
-                layout: 'hbox',
-                margins: '0 10 0 10'
-            },
-            fieldDefaults: {
-                allowBlank: false,
-                labelAlign: 'top',
-                flex: 1,
-                margins: 5
-            }
-            */
         });
 
         me.callParent(arguments);

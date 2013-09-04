@@ -96,7 +96,18 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                             dataIndex: 'status',
                             text: 'Status',
                             flex: 0.3           
-                        },                        
+                        },
+                        {
+                            xtype: 'gridcolumn',
+                            dataIndex: 'price',
+                            text: 'Price',
+                            flex: 0.3,
+                            editor: {
+                                xtype: 'numberfield',
+                                minValue: 0,
+                                decimalPrecision: 2
+                            }                            
+                        },                                                
                         {
                             xtype: 'actioncolumn',
                             width:50,

@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  attr_accessible :description, :condition, :guaranty, :guaranty_service, :status, :location_id
+  attr_accessible :description, :condition, :guaranty, :guaranty_service, :status, :location_id, :price
   
   has_one :model_order
   #has_one :order, through: :model_order
@@ -11,4 +11,7 @@ class Item < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :product_invoice
   belongs_to :location, :class_name => "Equipment"
+  
+  #validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality =>{:greater_than => 0}
+  
 end

@@ -16,12 +16,14 @@
   <%    respond[:product_type]=row.product_type.name %> 
   <%    respond[:vendor_name]=row.vendor.name %>    
   <%    respond[:model_name]=row.model.name %>
+  <%    respond[:model_power]=row.model.power %>   
   <%    respond[:order_id]= row.order.id %>
   <%    respond[:condition]= row.condition %> 
   <%    respond[:guaranty]= row.guaranty %>
   <%    respond[:guaranty_service]= row.guaranty_service %>
   <%    respond[:status]= row.status %> 
   <%    respond[:location_id]= row.location_id %>
+  <%    respond[:price]= row.price %>  
   <%    respond[:_location]= row.location ? row.location.name : '' %>    
     
   <%= respond.to_json(jsonOptions).to_s.html_safe %>

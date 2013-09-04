@@ -18,6 +18,10 @@ class Inventory::OrderItemsController < ApplicationController
     order = Order.find(params[:order_id])
     model = Model.find(params[:id])
     quantity = params[:quantity]
+    price = (Kernel.Float(params[:price]).round(2) / quantity.to_i).round(2)
+    logger.error "Start".center 50, "="
+    logger.error price
+    logger.error "End".center 50, "="
     quantity.times do
       order.models << model
       mo = ModelOrder.last
@@ -25,7 +29,8 @@ class Inventory::OrderItemsController < ApplicationController
       item.update_attributes({:guaranty_service => params[:guaranty_service],
                         :guaranty => params[:guaranty],
                         :condition => params[:condition],
-                        :status => 'in-order'
+                        :status => 'in-order',
+                        :price => price
       })
       item.vendor = mo.model.vendor
       item.order = mo.order

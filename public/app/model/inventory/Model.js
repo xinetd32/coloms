@@ -3,6 +3,10 @@ Ext.define('coloMS.model.inventory.Model', {
     
     fields: [
         {
+            name: 'power',
+            type: 'int'
+        },
+        {
             name: 'vendor_id',
             type: 'int'
         },

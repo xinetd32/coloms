@@ -54,6 +54,10 @@ Ext.define('coloMS.model.inventory.OrderItem', {
         {
             name: 'status',
             type: 'string'
-        }        
+        },
+        {
+            name: 'price',
+            type: 'float'
+        }                  
     ]
 });

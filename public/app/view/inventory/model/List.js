@@ -66,6 +66,16 @@ Ext.define('coloMS.view.inventory.model.List', {
                 },
                 {
                     xtype: 'gridcolumn',
+                    dataIndex: 'power',
+                    text: 'Power consumption',
+                    flex: 0.5,
+                    filter: {
+                        type: 'int',
+                        sqlField: 'models.power'
+                    }                    
+                },                
+                {
+                    xtype: 'gridcolumn',
                     dataIndex: 'description',
                     text: 'Description',
                     flex: 1, 

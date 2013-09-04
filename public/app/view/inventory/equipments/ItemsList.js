@@ -64,6 +64,28 @@ Ext.define('coloMS.view.inventory.equipments.ItemsList', {
                         sqlField: 'items.status'
                     }                   
                 },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'model_power',
+                    text: 'Power consumption',
+                    flex: 0.2,
+                    summaryType: 'sum',
+                    filter: {
+                        type: 'int',
+                        sqlField: 'models.power'
+                    }                   
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'price',
+                    text: 'Price',
+                    flex: 0.2,
+                    summaryType: 'sum',
+                    filter: {
+                        type: 'int',
+                        sqlField: 'items.price'
+                    }                   
+                }                                
             ],       
             dockedItems: [
                 {
@@ -105,7 +127,10 @@ Ext.define('coloMS.view.inventory.equipments.ItemsList', {
                         }                         
                     ]
                 }
-            ]        
+            ],
+            features: [{
+                ftype: 'summary'
+            }],                    
         });
 
         me.callParent(arguments);

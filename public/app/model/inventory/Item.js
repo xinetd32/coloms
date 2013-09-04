@@ -15,6 +15,10 @@ Ext.define('coloMS.model.inventory.Item', {
             type: 'string',
         },
         {
+            name: 'model_power',
+            type: 'int',
+        },        
+        {
             name: 'order_id',
             type: 'string',
         },
@@ -34,10 +38,14 @@ Ext.define('coloMS.model.inventory.Item', {
             name: 'status',
             type: 'string'
         },                
-         {
+        {
             name: 'location_id',
             type: 'int'
-        },                
+        },  
+        {
+            name: 'price',
+            type: 'float'
+        },                         
 
         // decorate releashions
          {
