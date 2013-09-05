@@ -6,7 +6,8 @@ Ext.define('coloMS.view.inventory.orders.edit.Window', {
         'coloMS.view.inventory.orders.edit.Form'
     ],
 
-    width: 900,
+    width: 1200,
+    height: 940,
     layout: {
         type: 'fit'
     },

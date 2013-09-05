@@ -24,6 +24,7 @@
   <%    respond[:status]= row.status %> 
   <%    respond[:location_id]= row.location_id %>
   <%    respond[:price]= row.price %>  
+  <%    respond[:old_id]= row.old_id %>    
   <%    respond[:_location]= row.location ? row.location.name : '' %>    
     
   <%= respond.to_json(jsonOptions).to_s.html_safe %>,

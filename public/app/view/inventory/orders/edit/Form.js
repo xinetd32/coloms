@@ -18,7 +18,8 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
         labelAlign: 'right',
         margins: '0 10 0 10'
     },
-    width: 900,
+    //width: 1500,
+    //height: 700,
     bodyPadding: 10,
     frame: true,  
 
@@ -113,13 +114,31 @@ Ext.define('coloMS.view.inventory.orders.edit.Form', {
                     title: 'Models'
                 },
                 {
-                    xtype: 'orderItemsList',
-                    height: 250,
+                    xtype: 'panel',
                     title: 'Order Items',
-                    store: Ext.create('coloMS.store.inventory.OrderItems',{
-                        //pageSize: 30
-                    }), 
-                }
+                    layout: {
+                        type: 'hbox',
+                        align: 'stretch'
+                    },
+                    frame: true,
+                    bodyPadding: 5,
+                    height: 480,
+                    items: [
+                        {
+                            xtype: 'orderItemsList',
+                            height: 250,
+                           
+                            store: Ext.create('coloMS.store.inventory.OrderItems',{
+                                //pageSize: 30
+                            }), 
+                            flex: .7
+                        },
+                        {
+                            xtype: 'orderItemsProperty',
+                            flex: .3
+                        }
+                    ]                    
+                },
             ],
         });
 

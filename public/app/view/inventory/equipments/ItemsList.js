@@ -4,7 +4,8 @@ Ext.define('coloMS.view.inventory.equipments.ItemsList', {
 
     requires: [
         'Ext.grid.plugin.RowEditing',
-        'Ext.toolbar.Paging'
+        'Ext.toolbar.Paging',
+        'Ext.grid.feature.Summary'
     ],
 
     height: 250,

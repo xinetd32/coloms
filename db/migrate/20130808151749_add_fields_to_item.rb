@@ -4,7 +4,7 @@ class AddFieldsToItem < ActiveRecord::Migration
     add_column :items, :guaranty, :integer
     add_column :items, :guaranty_service, :string
     add_column :items, :status, :string
-    add_column :items, :location_id, :integer
+    add_column :items, :location_id, :integer, default: 0
   end
 
   def down

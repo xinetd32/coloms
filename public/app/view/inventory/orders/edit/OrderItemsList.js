@@ -16,6 +16,7 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
 
         Ext.applyIf(me, {
             columns: [
+            
                         {
                             xtype: 'gridcolumn',
                             dataIndex: '_vendors__name',
@@ -34,6 +35,7 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                             text: 'Name',
                             flex: 1
                         },
+                        /*
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'condition',
@@ -70,16 +72,12 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                                 displayField: 'name',
                                 valueField: 'name',
                                 triggerAction: 'all',
-                                /*
-                                store: {
-                                    type: 'inventory.guarantyServices'
-                                },
-                                */
-                               store: Ext.create('coloMS.store.inventory.GuarantyServices'), 
+                                store: Ext.create('coloMS.store.inventory.GuarantyServices'), 
                                 editable: false,
                                 forceSelection: true                                                               
                             }
-                        },                                                
+                        }, 
+                        */                                               
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'quantity',
@@ -91,12 +89,14 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                                 minValue: 1
                             }                            
                         },
+                        /*
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'status',
                             text: 'Status',
-                            flex: 0.3           
+                          //  flex: 0.3           
                         },
+                        */ 
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'price',
@@ -107,7 +107,7 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                                 minValue: 0,
                                 decimalPrecision: 2
                             }                            
-                        },                                                
+                        },  
                         {
                             xtype: 'actioncolumn',
                             width:50,
@@ -116,18 +116,24 @@ Ext.define('coloMS.view.inventory.orders.edit.OrderItemsList', {
                                     tooltip: 'Delete',
                                     icon: 'resources/images/icons/delete.png',
                                     handler: function(grid, rowIndex, colIndex) {
-                                        grid.getStore().remove(grid.getStore().getAt(rowIndex));
+                                        Ext.Msg.confirm( 'Attention', 'Are you sure you want to delete this Item?', function( buttonId, text, opt ) {
+                                            if( buttonId=='yes' ) {
+                                                grid.getStore().remove(grid.getStore().getAt(rowIndex));
+                                            }
+                                        });                                      
+                                        
                                     }                                    
                                 }
                             ]  
                         }           
             ],
+            /*
             plugins: coloMS.LoggedInUser.inRole('admin') ? [
                 Ext.create('Ext.grid.plugin.RowEditing', {
                     pluginId: 'orderRowEdit'
                 })
             ] : []            
-
+          */
         });
 
         me.callParent(arguments);

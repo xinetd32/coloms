@@ -80,7 +80,7 @@ Ext.define('coloMS.controller.Equipments', {
                     }
                 }
                 ]
-            })
+            });
         }
         // show menu relative to item which was right-clicked
         //item.contextMenu.showBy( item );
@@ -153,6 +153,7 @@ Ext.define('coloMS.controller.Equipments', {
         var me = this,
             store = record.store;
         // show confirmation before continuing
+        if (!record.data.id) return;
         Ext.Msg.confirm( 'Attention', 'Are you sure you want to delete this equipment? This action cannot be undone.', function( buttonId, text, opt ) {
             if( buttonId=='yes' ) {
                 store.remove( record );
@@ -165,9 +166,9 @@ Ext.define('coloMS.controller.Equipments', {
                     failure: function( records, operation ) {
                         store.rejectChanges();
                     }
-                })
+                });
             }
-        })
+        });
     }
 
 });

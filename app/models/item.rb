@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  attr_accessible :description, :condition, :guaranty, :guaranty_service, :status, :location_id, :price
+  attr_accessible :description, :condition, :guaranty, :guaranty_service, :status, :location_id, :price, :old_id
   
   has_one :model_order
   #has_one :order, through: :model_order

@@ -82,7 +82,7 @@ Ext.define('coloMS.controller.Items', {
                     }
                 }
                 ]
-            })
+            });
         }
         // show menu relative to item which was right-clicked
         //item.contextMenu.showBy( item );
@@ -171,7 +171,7 @@ Ext.define('coloMS.controller.Items', {
     },
 
     onBeforeEditPropertyGrid: function(editor, e, eOpts) {
-        var editableFields = ['guaranty_service', 'status', 'description', 'guaranty', 'condition','location_id'];
+        var editableFields = ['old_id', 'guaranty_service', 'status', 'description', 'guaranty', 'condition','location_id'];
         return Ext.Array.contains(editableFields, e.record.data.name);
     },
 
@@ -185,7 +185,7 @@ Ext.define('coloMS.controller.Items', {
                 return true;
             }
 
-        })
+        });
     },
 
     onClearField: function(f ,e) {

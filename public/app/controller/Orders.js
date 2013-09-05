@@ -12,7 +12,8 @@ Ext.define('coloMS.controller.Orders', {
         'coloMS.store.inventory.OrderItems',
         'coloMS.store.inventory.GuarantyServices',
         'coloMS.view.inventory.orders.edit.OrderItemsList',
-        'coloMS.store.inventory.OrderStatuses'
+        'coloMS.store.inventory.OrderStatuses',
+        'coloMS.view.inventory.orders.edit.OrderItemsProperty'
     ],
 
     refs: [
@@ -35,12 +36,19 @@ Ext.define('coloMS.controller.Orders', {
         {
             ref: 'OrdersModelList',
             selector: 'ordersModelsList'
-        }
+        },
+        {
+            ref: 'OrderItemsProperty',
+            selector: '[xtype=orderItemsProperty]'
+        },
+        { ref: 'searchFieldP', selector: 'orderItemsProperty textfield[name=searchField]' }
+                
     ],
     views: [
         'inventory.orders.edit.Form',
         'inventory.orders.edit.Window',
-        'inventory.orders.List'
+        'inventory.orders.List',
+        'inventory.orders.edit.OrderItemsProperty'
     ],
     store: [
         'inventory.Orders',
@@ -90,13 +98,33 @@ Ext.define('coloMS.controller.Orders', {
                       scope: this,
                       buffer: 500
                     }  
-                } 
+                },
+                'grid[xtype=orderItemsList]': {
+                    itemclick: this.onItemClick
+                },
+                'orderItemsProperty': {
+                    propertychange: this.onPropertyChange,
+                    beforeedit: this.onBeforeEditPropertyGrid
+                }, 
+                'orderItemsProperty textfield[name=searchField]': {
+                    change: this.onChangeFilterField,
+                    specialkey: this.onClearField
+                }                                
             },
             global: {},
-            store: {},
+            store: {
+                '#OrderItems': {
+                    remove: this.clearPropertyGrid
+                }
+            },
             proxy: {} 
         });
     },
+    
+   clearPropertyGrid: function() {
+      var dp = Ext.ComponentQuery.query('orderItemsProperty')[0];
+      dp.setSource();
+   },
     
     onClickContextMenu: function(item, e, eOpts) {
         var me = this,
@@ -112,6 +140,83 @@ Ext.define('coloMS.controller.Orders', {
                 break;
             }                                          
     },
+    
+    onItemClick: function(grid, record, item, index, e, eOpts) {
+        if (record) {
+            var dp = this.getOrderItemsProperty(),
+                sourceConfig = {
+                    'guaranty_service': {
+                        editor: Ext.create('Ext.form.ComboBox', {                       
+                                    store: Ext.create('coloMS.store.inventory.GuarantyServices'), 
+                                    displayField: 'name',
+                                    valueField: 'name'
+                                }) 
+                    },
+                    'condition': {
+                        editor: Ext.create('Ext.form.ComboBox', {                       
+                                    store: Ext.create('coloMS.store.inventory.Conditions'), 
+                                    displayField: 'name',
+                                    valueField: 'name'
+                              })
+                    },
+                    'guaranty': {
+                        editor: Ext.create('Ext.form.field.Number' , {
+                                    minValue: 0
+                                })
+                    }, 
+                    'status': {
+                        editor: Ext.create('Ext.form.ComboBox', {                       
+                                    store: Ext.create('coloMS.store.inventory.ItemStatuses'), 
+                                    displayField: 'name',
+                                    valueField: 'name'
+                              })
+                    },
+                    'quantity': {
+                        editor: Ext.create('Ext.form.field.Number' , {
+                                    minValue: 1
+                                })
+                    }                   
+            };                                                    
+            dp.setSource(record.getData(), sourceConfig);
+        }
+    },
+
+    onPropertyChange: function(source, recordId, value, oldValue, eOpts) {
+        // TODO неотрабатывает роуэдит после редактированифя проперти-грида при this.getDeviceList(). Второй случай с гетером
+        //var store = this.getDeviceList().getStore();
+        var store = Ext.ComponentQuery.query('orderItemsList')[0].getStore();
+        var rec = store.findRecord("id", source.id);
+        rec.set(recordId, value);
+        rec.setDirty();
+        //store.sync();
+    },
+
+    onBeforeEditPropertyGrid: function(editor, e, eOpts) {
+        var editableFields = ['guaranty_service', 'status', 'guaranty', 'condition','quantity', 'price'];
+        return Ext.Array.contains(editableFields, e.record.data.name);
+    }, 
+    
+    onChangeFilterField: function(f, newValue, oldValue, eOpts) {
+        var dp = Ext.ComponentQuery.query('orderItemsProperty')[0];
+        var store = dp.getStore();
+        store.filterBy(function (record) {
+            if (record.internalId.search(newValue) == -1) {
+                return false;
+            } else {
+                return true;
+            }
+
+        });
+    },
+
+    onClearField: function(f ,e) {
+        if (e!=undefined) {
+            var key = e.getKey();
+            if (key == 27) {
+                this.getSearchFieldP().setValue('');
+            }
+        }
+    },       
     
     showContextMenu: function(view, record, item, index, e, eOpts) {
         var me = this;

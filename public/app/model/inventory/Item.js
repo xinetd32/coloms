@@ -45,7 +45,11 @@ Ext.define('coloMS.model.inventory.Item', {
         {
             name: 'price',
             type: 'float'
-        },                         
+        },
+        {
+            name: 'old_id',
+            type: 'int'
+        },                                   
 
         // decorate releashions
          {

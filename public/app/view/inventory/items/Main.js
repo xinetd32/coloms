@@ -27,4 +27,4 @@ Ext.define('coloMS.view.inventory.items.Main', {
             flex: .3
         }
     ]
-})
+});
