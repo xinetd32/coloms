@@ -88,7 +88,8 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
                     xtype: 'checkboxfield',
                     name: 'consumable',
                     fieldLabel: 'Consumable',
-                    inputValue: true
+                    inputValue: true,
+                    uncheckedValue: 'false'
                 },                                
                 {
                     xtype: 'textarea',
