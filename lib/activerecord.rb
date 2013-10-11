@@ -13,9 +13,6 @@ class ActiveRecord::Base
   def self.extLimits(params = {})
     relation = scoped
 
-    # handling limits
-    relation = relation.offset(params[:start].to_i) if params[:start]
-    relation = relation.limit(params[:limit].to_i) if params[:limit]
     # handling ExtJS query
     if (params[:query] && params[:query]!='')
       where = []
@@ -23,6 +20,10 @@ class ActiveRecord::Base
         where << "(#{column} LIKE '%#{params[:query]}%')"
       end
       relation = relation.where(where.join(' OR '))
+    else
+      # handling limits
+      relation = relation.offset(params[:start].to_i) if params[:start]
+      relation = relation.limit(params[:limit].to_i) if params[:limit]      
     end
     
     #hanling relations
