@@ -73,7 +73,19 @@ Ext.define('coloMS.view.inventory.model.List', {
                         type: 'int',
                         sqlField: 'models.power'
                     }                    
-                },                
+                },
+                {
+                    xtype: 'booleancolumn',
+                    dataIndex: 'consumable',
+                    text: 'Consumable',
+                    flex: 0.3,
+                    trueText: 'Yes',
+                    falseText: 'No',                    
+                    filter: {
+                        type: 'boolean',
+                        sqlField: 'models.consumable'
+                    }                    
+                },                                          
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'description',

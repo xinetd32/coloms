@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905060241) do
+ActiveRecord::Schema.define(:version => 20131011084811) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(:version => 20130905060241) do
 
   create_table "items", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "condition"
     t.integer  "guaranty"
     t.string   "guaranty_service"
     t.string   "status"
-    t.integer  "location_id",      :default => 0
+    t.integer  "location_id"
     t.integer  "order_id"
     t.integer  "vendor_id"
     t.integer  "product_type_id"
@@ -82,10 +82,37 @@ ActiveRecord::Schema.define(:version => 20130905060241) do
     t.string   "description"
     t.integer  "vendor_id"
     t.integer  "product_type_id"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.integer  "power"
+    t.boolean  "consumable",      :default => false
+  end
+
+  create_table "network_devices", :force => true do |t|
+    t.integer  "equipment_id"
+    t.string   "mgmt_ip_address"
+    t.string   "snmp_community"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.integer  "power"
+    t.integer  "status"
   end
+
+  add_index "network_devices", ["equipment_id"], :name => "index_network_devices_on_equipment_id"
+
+  create_table "network_interfaces", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "device_id"
+    t.integer  "snmp_index"
+    t.integer  "interface_type"
+    t.integer  "status"
+    t.integer  "interface_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "network_interfaces", ["device_id"], :name => "index_network_interfaces_on_device_id"
+  add_index "network_interfaces", ["interface_id"], :name => "index_network_interfaces_on_interface_id"
 
   create_table "orders", :force => true do |t|
     t.string   "name"

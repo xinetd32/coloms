@@ -111,7 +111,10 @@ class ActiveRecord::Base
         when 'boolean'
           gf_value = gf_value.downcase
           if gf_value == 'true' or gf_value == 'false'
-            fs_tmp = gf_field + ' = ' + gf_value
+            # fs_tmp = gf_field + ' = ' + gf_value
+            ## SQLite boolean field
+            fs_tmp = gf_field + ' = ' + '\'f\'' if gf_value == 'false'
+            fs_tmp = gf_field + ' = ' + '\'t\'' if gf_value == 'true'
           end
         when 'list'
           fs_tmp = buildFilterOptions_List(gf_value, gf_field)  #Need to implement your own data validation

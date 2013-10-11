@@ -14,6 +14,10 @@ Ext.define('coloMS.model.inventory.Model', {
             name: 'product_type_id',
             type: 'int'
         },
+        {
+            name: 'consumable',
+            type: 'boolean'
+        },
         // decorate releashions
         {
             name: '_vendors__name',

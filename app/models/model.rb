@@ -1,5 +1,5 @@
 class Model < ActiveRecord::Base
-  attr_accessible :name, :description, :product_type_id, :vendor_id, :power
+  attr_accessible :name, :description, :product_type_id, :vendor_id, :power, :consumable
   
   belongs_to :vendor
   belongs_to :product_type

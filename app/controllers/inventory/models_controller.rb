@@ -6,7 +6,7 @@ class Inventory::ModelsController < ApplicationController
   
   def index
     # Поля по которым производить Live-поиск
-    defaultModel.queryColumns=['models.name', 'vendors.name', 'product_types.name', 'models.description']
+    defaultModel.queryColumns=['models.name', 'vendors.name', 'product_types.name', 'models.description', 'model.consumable']
     @result = defaultModel.includes(:vendor).includes(:product_type).extLimits(params)
   end
 

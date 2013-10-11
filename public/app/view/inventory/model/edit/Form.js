@@ -83,7 +83,13 @@ Ext.define('coloMS.view.inventory.model.edit.Form', {
                     xtype: 'textfield',
                     name: 'power',
                     fieldLabel: 'Power Cons.(W)'
-                },                
+                }, 
+                {
+                    xtype: 'checkboxfield',
+                    name: 'consumable',
+                    fieldLabel: 'Consumable',
+                    inputValue: true
+                },                                
                 {
                     xtype: 'textarea',
                     name: 'description',
